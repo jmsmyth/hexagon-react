@@ -1,5 +1,6 @@
 {
   "name": "hexagon-react",
+  "description": "A React wrapper for HexagonJS",
   "authors": [
     "James Smyth <jmsmyth@users.noreply.github.com>"
   ],
