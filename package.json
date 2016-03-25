@@ -5,7 +5,8 @@
   "main": "dist/hexagon-react.js",
   "scripts": {
     "build": "webpack --progress --colors",
-    "start": "webpack-dev-server --progress --colors"
+    "start": "webpack-dev-server --progress --colors",
+    "test": "npm run build"
   },
   "author": "James Smyth <jmsmyth@users.noreply.github.com>",
   "license": "MIT",
