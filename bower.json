@@ -1,0 +1,19 @@
+{
+  "name": "hexagon-react",
+  "version": "1.0.0",
+  "authors": [
+    "James Smyth <jmsmyth@users.noreply.github.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "hexagon-js": "~1.2.1",
+    "font-awesome": "~4.5.0"
+  }
+}
