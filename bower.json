@@ -1,10 +1,10 @@
 {
   "name": "hexagon-react",
-  "version": "1.0.0",
   "authors": [
     "James Smyth <jmsmyth@users.noreply.github.com>"
   ],
   "license": "MIT",
+  "main": "dist/hexagon-react.js",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -12,7 +12,7 @@
     "test",
     "tests"
   ],
-  "dependencies": {
+  "devDependencies": {
     "hexagon-js": "~1.2.1",
     "font-awesome": "~4.5.0"
   }
