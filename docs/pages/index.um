@@ -1,0 +1,346 @@
+@stylesheet /hexagon-js/hexagon.css
+@script /hexagon-js/hexagon.js
+@script /react/react.js
+@script /react-dom/react-dom.js
+@stylesheet /font-awesome/css/font-awesome.css
+@stylesheet /resources/site.css
+
+@contentSection
+
+  @div .title: Hexagon React
+
+  @sidebar right
+    @tableOfContents
+
+  @topic Installation
+
+    Install using bower:
+
+    @codeblock bash
+      bower install --save react
+      bower install --save hexagon-js
+      bower install --save hexagon-react
+
+  @topic Setup
+
+    Include these scripts in your page (the order is important)
+
+    @codeblock html
+      <script src="bower_components/react/dist/react.js"/>
+      <script src="bower_components/hexagon-js/dist/hexagon-js/hexagon.js"/>
+      <script src="bower_components/hexagon-react/dist/hexagon-react.js"/>
+
+    @notice Note
+      hexagon-react requires the @bold[React] and @bold[hx] globals to be available.
+
+
+  @topic Components
+    @section TitleBar
+      @example
+        import { TitleBar, TitleBarIcon, TitleBarLink } from 'hexagon-react'
+
+        const example = <TitleBar title="Hexagon React" subtitle="Subtitle">
+          <TitleBarIcon iconClass="fa fa-tags">Tags</TitleBarIcon>
+          <TitleBarIcon iconClass="fa fa-life-ring">Help</TitleBarIcon>
+          <TitleBarIcon iconClass="fa fa-cog">Settings</TitleBarIcon>
+          <TitleBarIcon iconClass="fa fa-power-off">Sign out</TitleBarIcon>
+          <TitleBarLink href="link-1">Link 1</TitleBarLink>
+          <TitleBarLink href="link-2">Link 2</TitleBarLink>
+          <TitleBarLink href="link-3">Link 3</TitleBarLink>
+          <TitleBarLink href="link-4">Link 4</TitleBarLink>
+        </TitleBar>
+
+
+    @section Button
+      @example
+        import { Button } from 'hexagon-react'
+
+        const example = <div>
+          <Button>Default Button</Button>
+          <Button context="action">Action Button</Button>
+          <Button context="positive">Positive Button</Button>
+          <Button context="warning">Warning Button</Button>
+          <Button context="negative">Negative Button</Button>
+          <Button context="info">Info Button</Button>
+          <Button context="contrast">Contrast Button</Button>
+          <Button context="compliment">Compliment Button</Button>
+          <Button disabled={true}>Disabled Button</Button>
+        </div>
+
+    @section Label
+      @example
+        import { Label } from 'hexagon-react'
+
+        const example = <div>
+          <Label>Default Label</Label>
+          <Label context="action">Action Label</Label>
+          <Label context="positive">Positive Label</Label>
+          <Label context="warning">Warning Label</Label>
+          <Label context="negative">Negative Label</Label>
+          <Label context="info">Info Label</Label>
+          <Label context="contrast">Contrast Label</Label>
+          <Label context="compliment">Compliment Label</Label>
+          <Label disabled={true}>Disabled Label</Label>
+        </div>
+
+    @section Spinner
+      @example
+        import { Spinner } from 'hexagon-react'
+
+        const example = <Spinner/>
+
+    @section  SpinnerWide
+      @example
+        import { SpinnerWide } from 'hexagon-react'
+
+        const example = <SpinnerWide/>
+
+    @section Modal
+      @notice Note: These work just as they do with regular hexagon
+      @example
+        import { Button } from 'hexagon-react'
+
+        function showModal () {
+          const modal = new hx.Modal('Modal Title', (node) => {
+            hx.select(node).text('Modal Text')
+          })
+          modal.show()
+        }
+
+        const example = <Button context="action" onClick={showModal}>Show Modal</Button>
+
+    @section Notification
+      @notice Note: These work just as they do with regular hexagon
+      @example
+        import { Button } from 'hexagon-react'
+
+        function showNotification () {
+          hx.notify('Hello')
+        }
+
+        const example = <Button context="action" onClick={showNotification}>Show Notification</Button>
+
+    @section Tree
+      @example
+        import { Tree } from 'hexagon-react'
+
+        const treeRenderer = (elem, data) => {
+          hx.select(elem).text(data.name)
+        }
+
+        const treeData = [
+          {
+            name: 'Parent 1',
+            children: [
+              {
+                name: 'Item 1'
+              },
+              {
+                name: 'Parent 2',
+                children: [
+                  {
+                    name: 'Item 2'
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+
+        const example = <Tree items={treeData} renderer={treeRenderer}></Tree>
+
+    @section Picker
+      @example
+        import { Picker } from 'hexagon-react'
+
+        const example = <Picker items={['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Other']} value="Option 1"></Picker>
+
+    @section InputGroup
+      @example
+        import { InputGroup, Picker, Button } from 'hexagon-react'
+
+        const example = <InputGroup>
+          <input/>
+          <Picker context="action" items={['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Other']} value="Option 1"></Picker>
+          <Button context="action">Go!</Button>
+        </InputGroup>
+
+    @section ProgressBar
+      @example
+        import { ProgressBar } from 'hexagon-react'
+
+        const example = <div>
+          <ProgressBar context="info" value={0.5}/>
+          <br/>
+          <ProgressBar context="action" value={0.15}/>
+          <br/>
+          <ProgressBar context="negative" value={0.25}/>
+          <br/>
+          <ProgressBar context="positive" value={0.75}/>
+        </div>
+
+    @section Collapsible
+      @example
+        import { Collapsible } from 'hexagon-react'
+
+        const example = <Collapsible title="Title">
+          <div style={{padding: '1em', fontSize: '2em'}}>Content</div>
+        </Collapsible>
+
+    @section NumberPicker
+      @example
+        import { NumberPicker } from 'hexagon-react'
+
+        const example = <div>
+          <NumberPicker></NumberPicker>
+          <NumberPicker context="action"></NumberPicker>
+          <NumberPicker context="positive"></NumberPicker>
+          <NumberPicker context="warning"></NumberPicker>
+          <NumberPicker context="negative"></NumberPicker>
+          <NumberPicker context="info"></NumberPicker>
+          <NumberPicker context="contrast"></NumberPicker>
+          <NumberPicker context="compliment"></NumberPicker>
+          <NumberPicker min={5} max={10} value={7}></NumberPicker>
+          <NumberPicker disabled={true}></NumberPicker>
+        </div>
+
+    @section Layout
+      @example
+        import { Group, Section } from 'hexagon-react'
+
+        const example = <div className="docs-layout-demo">
+          <Group direction="horizontal">
+            <Section></Section>
+            <Group direction="vertical">
+              <Section></Section>
+              <Section></Section>
+              <Group direction="horizontal">
+                <Section></Section>
+                <Section></Section>
+              </Group>
+            </Group>
+            <Section></Section>
+            <Section></Section>
+          </Group>
+        </div>
+
+      @@style
+        /* adds some styling to make the sections of the layout visible for this example */
+        .docs-layout-demo .hx-section {
+          background: #d6d6d6;
+          min-width: 150px;
+          min-height: 100px;
+        }
+
+      @codeblock css
+        /* adds some styling to make the sections of the layout visible for this example */
+        .docs-layout-demo .hx-section {
+          background: #d6d6d6;
+          min-width: 150px;
+          min-height: 100px;
+        }
+
+    @section ButtonGroup
+      @example
+        import { ButtonGroup } from 'hexagon-react'
+
+        const example = <ButtonGroup items={['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Other']} value="Option 2"/>
+
+    @section DatePicker
+      @example
+        import { DatePicker } from 'hexagon-react'
+
+        const example = <DatePicker date={new Date(Date.now() - 24 * 60 * 60 * 1000)}/>
+
+    @section TimePicker
+      @example
+        import { TimePicker } from 'hexagon-react'
+
+        const example = <TimePicker/>
+
+    @section DateTimePicker
+      @example
+        import { DateTimePicker } from 'hexagon-react'
+
+        const example = <DateTimePicker/>
+
+    @section ColorPicker
+      @example
+        import { ColorPicker } from 'hexagon-react'
+
+        const example = <div>
+          <ColorPicker/>
+          <ColorPicker value="#448877"/>
+        </div>
+
+    @section Toggle
+      @example
+        import { Toggle } from 'hexagon-react'
+
+        const example = <div>
+          <Toggle/>
+          <Toggle value={true}/>
+        </div>
+
+    @section PivotTable
+      @example
+        import { PivotTable } from 'hexagon-react'
+
+        const pivotTableData = {
+          topHead: [
+            'Head 1',
+            'Head 2',
+            'Head 3'
+          ],
+          leftHead: [
+            'Head 1',
+            'Head 2',
+            'Head 3'
+          ],
+          body: [
+            [
+              'Cell 1',
+              'Cell 2',
+              'Cell 3'
+            ],
+            [
+              'Cell 1',
+              'Cell 2',
+              'Cell 3'
+            ],
+            [
+              'Cell 1',
+              'Cell 2',
+              'Cell 3'
+            ]
+          ]
+        }
+
+        const example = <PivotTable data={pivotTableData}/>
+
+    @section TagInput
+      @example
+        import { TagInput } from 'hexagon-react'
+
+        const example = <TagInput items={['tag-1', 'tag-2', 'tag-3']}/>
+
+    @section AutoComplete
+      @example
+        import { AutoComplete } from 'hexagon-react'
+
+        const autocompleteData = [
+          'Bob',
+          'Dave',
+          'Steve',
+          'Kate',
+          'Bill',
+          'Alejandro'
+        ]
+
+        const example = <AutoComplete data={autocompleteData}/>
+
+    @section Slider
+      @example
+        import { Slider } from 'hexagon-react'
+
+        const example = <Slider/>
