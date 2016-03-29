@@ -5,9 +5,10 @@
 @stylesheet /font-awesome/css/font-awesome.css
 @stylesheet /resources/site.css
 
-@contentSection
+@topSection
+  @title Hexagon React
 
-  @div .title: Hexagon React
+@contentSection
 
   @sidebar right
     @tableOfContents
@@ -27,7 +28,7 @@
 
     @codeblock html
       <script src="bower_components/react/dist/react.js"/>
-      <script src="bower_components/hexagon-js/dist/hexagon-js/hexagon.js"/>
+      <script src="bower_components/hexagon-js/dist/hexagon-light/hexagon.js"/>
       <script src="bower_components/hexagon-react/dist/hexagon-react.js"/>
 
     @notice Note

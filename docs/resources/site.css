@@ -18,3 +18,7 @@ body {
 .qm-docs-topic-header {
   color: #2EADA8 !important;
 }
+
+.qm-docs-top-section-centered {
+  width: 800px !important;
+}
