@@ -1,4 +1,4 @@
-const React = (global || window).React
+const React = window.React
 
 function classes (...cls) {
   return cls.filter(hx.defined).join(' ')
@@ -12,26 +12,20 @@ function contextClass (context) {
 
 export class Content extends React.Component {
   render() {
-    return (<div className="hx-content">
-      {this.props.children}
-    </div>)
+    return React.createElement('div', {className: 'hx-content'}, this.props.children)
   }
 }
 
 export class Group extends React.Component {
   render() {
     const direction = this.props.direction === 'vertical' ? 'hx-vertical' : 'hx-horizontal'
-    return (<div className={classes('hx-group', direction)}>
-      {this.props.children}
-    </div>)
+    return React.createElement('div', {className: classes('hx-group', direction)}, this.props.children)
   }
 }
 
 export class Section extends React.Component {
   render() {
-    return (<div className="hx-section">
-      {this.props.children}
-    </div>)
+    return React.createElement('div', {className: 'hx-section'}, this.props.children)
   }
 }
 
@@ -43,42 +37,36 @@ export class TitleBar extends React.Component {
   }
 
   render() {
-    return (<div ref={(d) => this.div = d} className="hx-heading example-heading">
-        <div className="hx-titlebar">
-          <div className="hx-titlebar-container">
-            <div className="hx-titlebar-header">
-              <a className="hx-titlebar-icon" href="#"><img className={this.props.logoClass || 'hx-logo'} /></a>
-              <div className="hx-titlebar-title">{this.props.title}</div>
-              <div className="hx-titlebar-subtitle">{this.props.subtitle}</div>
-              <div className="hx-titlebar-menu-icon-mobile"><i className="fa fa-reorder"></i></div>
-            </div>
-            <div className="hx-titlebar-menu-icons">
-              <div className="hx-titlebar-menu-icons-container">
-                {this.props.children.filter((x) => x.type.name === 'TitleBarIcon')}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="hx-titlebar-linkbar">
-          <div className="hx-titlebar-contents">
-            {this.props.children.filter((x) => x.type.name === 'TitleBarLink')}
-          </div>
-        </div>
-      </div>)
+    return React.createElement('div', { ref: ((d) => this.div = d), className: 'hx-heading example-heading' },
+      React.createElement('div', { className: 'hx-titlebar' },
+        React.createElement('div', { className: 'hx-titlebar-container' },
+          React.createElement('div', { className: 'hx-titlebar-header' },
+            React.createElement('a', { className: 'hx-titlebar-icon', href: '#' },
+              React.createElement('img', { className: this.props.logoClass || 'hx-logo' })),
+            React.createElement('div', { className: 'hx-titlebar-title' }, this.props.title),
+            React.createElement('div', { className: 'hx-titlebar-subtitle' }, this.props.subtitle),
+            React.createElement('div', { className: 'hx-titlebar-menu-icon-mobile' },
+              React.createElement('i', { className: 'fa fa-reorder' }))),
+          React.createElement('div', { className: 'hx-titlebar-menu-icons' },
+            React.createElement('div', { className: 'hx-titlebar-menu-icons-container' },
+              (this.props.children ? this.props.children.filter(x => x.type.name === 'TitleBarIcon') : undefined))))),
+      React.createElement('div', { className: 'hx-titlebar-linkbar' },
+        React.createElement('div', { className: 'hx-titlebar-contents' },
+          (this.props.children ? this.props.children.filter(x => x.type.name === 'TitleBarLink') : undefined))))
   }
 }
 
 export class TitleBarLink extends React.Component {
   render() {
-    return <a href={this.props.href} className="hx-titlebar-link">{this.props.children}</a>
+    return React.createElement('a', {href: this.props.href, className: 'hx-titlebar-link'}, this.props.children)
   }
 }
 
 export class TitleBarIcon extends React.Component {
   render() {
-    return (<a className="hx-titlebar-menu-icon">
-      <i className={this.props.iconClass}></i><span className="hx-titlebar-menu-text">{this.props.children}</span>
-    </a>)
+    return React.createElement('a', {className: 'hx-titlebar-menu-icon'},
+      React.createElement('i', {className: this.props.iconClass}),
+      React.createElement('span', {className: 'hx-titlebar-menu-text'}, this.props.children))
   }
 }
 
@@ -89,9 +77,7 @@ export class Button extends React.Component {
     super(props)
   }
   render() {
-    return (<button className={classes('hx-btn', contextClass(this.props.context))} {...this.props}>
-      {this.props.children}
-    </button>)
+    return React.createElement('button', hx.merge({className: classes('hx-btn', contextClass(this.props.context))}, this.props), this.props.children)
   }
 }
 
@@ -99,13 +85,13 @@ export class Button extends React.Component {
 
 export class Spinner extends React.Component {
   render() {
-    return <span className="hx-spinner" {...this.props}></span>
+    return React.createElement('span', {className: 'hx-spinner'})
   }
 }
 
 export class SpinnerWide extends React.Component {
   render() {
-    return <div className="hx-spinner-wide" {...this.props}></div>
+    return React.createElement('span', {className: 'hx-spinner-wide'})
   }
 }
 
@@ -116,9 +102,9 @@ export class Label extends React.Component {
     super(props)
   }
   render() {
-    return (<span className={classes('hx-label', contextClass(this.props.context))} {...this.props}>
-      {this.props.children}
-    </span>)
+    return React.createElement('span',
+      {className: classes('hx-label', contextClass(this.props.context))},
+      this.props.children)
   }
 }
 
@@ -126,10 +112,10 @@ export class Label extends React.Component {
 
 export class Notice extends React.Component {
   render() {
-    return (<div className={classes('hx-notice', contextClass(this.props.context))} {...this.props}>
-      <div className="hx-notice-header">{this.props.title}</div>
-      <div className="hx-notice-body">{this.props.children}</div>
-    </div>)
+    return React.createElement('div',
+      {className: classes('hx-notice', contextClass(this.props.context))},
+      React.createElement('div', {className: 'hx-notice-header'}, this.props.title),
+      React.createElement('div', {className: 'hx-notice-body'}, this.props.children))
   }
 }
 
@@ -146,7 +132,7 @@ export class Tree extends React.Component {
   }
 
   render() {
-    return (<div className="hx-tree" ref={(d) => this.div = d} {...this.props}> </div>)
+    return React.createElement('div', {className: 'hx-tree', ref: (d) => this.div = d})
   }
 }
 
@@ -166,7 +152,7 @@ export class Picker extends React.Component {
   }
 
   render() {
-    return <div className={classes('hx-picker', contextClass(this.props.context))} ref={(d) => this.div = d} {...this.props}> </div>
+    return React.createElement('div', {className: classes('hx-picker', contextClass(this.props.context)), ref: (d) => this.div = d})
   }
 }
 
@@ -174,7 +160,7 @@ export class Picker extends React.Component {
 
 export class InputGroup extends React.Component {
   render() {
-    return <span className="hx-input-group" {...this.props}>{this.props.children}</span>
+    return React.createElement('span', {className: 'hx-input-group'})
   }
 }
 
@@ -190,7 +176,7 @@ export class ProgressBar extends React.Component {
   }
 
   render() {
-    return <div className={classes('hx-progress-bar', contextClass(this.props.context))} ref={(d) => this.div = d} {...this.props}> </div>
+    return React.createElement('div', {className: classes('hx-progress-bar', contextClass(this.props.context)), ref: (d) => this.div = d})
   }
 }
 
@@ -203,10 +189,9 @@ export class Collapsible extends React.Component {
   }
 
   render() {
-    return (<div className="hx-collapsible" ref={(d) => this.div = d} {...this.props}>
-      <div className="hx-collapsible-heading">{this.props.title}</div>
-      <div className="hx-collapsible-content">{this.props.children}</div>
-    </div>)
+    return React.createElement('div', {className: 'hx-collapsible', ref: (d) => this.div = d},
+      React.createElement('div', {className: 'hx-collapsible-heading'}, this.props.title),
+      React.createElement('div', {className: 'hx-collapsible-content'}, this.props.children))
   }
 }
 
@@ -226,7 +211,7 @@ export class NumberPicker extends React.Component {
   }
 
   render() {
-    return <div className='hx-number-picker' ref={(d) => this.div = d} {...this.props}> </div>
+    return React.createElement('div', {className: 'hx-number-picker', ref: (d) => this.div = d})
   }
 }
 
@@ -249,7 +234,7 @@ export class ButtonGroup extends React.Component {
   }
 
   render() {
-    return <div className='hx-button-group' ref={(d) => this.div = d} {...this.props}> </div>
+    return React.createElement('div', {className: 'hx-button-group', ref: (d) => this.div = d})
   }
 }
 
@@ -272,7 +257,7 @@ export class DatePicker extends React.Component {
   }
 
   render() {
-    return <div className='hx-date-picker' ref={(d) => this.div = d} {...this.props}> </div>
+    return React.createElement('div', {className: 'hx-date-picker', ref: (d) => this.div = d})
   }
 }
 
@@ -292,7 +277,7 @@ export class TimePicker extends React.Component {
   }
 
   render() {
-    return <div className='hx-time-picker' ref={(d) => this.div = d} {...this.props}> </div>
+    return React.createElement('div', {className: 'hx-time-picker', ref: (d) => this.div = d})
   }
 }
 
@@ -312,7 +297,7 @@ export class DateTimePicker extends React.Component {
   }
 
   render() {
-    return <div className='hx-date-time-picker' ref={(d) => this.div = d} {...this.props}> </div>
+    return React.createElement('div', {className: 'hx-date-time-picker', ref: (d) => this.div = d})
   }
 }
 
@@ -331,7 +316,7 @@ export class ColorPicker extends React.Component {
   }
 
   render() {
-    return <button className='hx-btn hx-color-picker' ref={(d) => this.div = d} {...this.props}> Choose a color </button>
+    return React.createElement('div', {className: 'hx-btn hx-color-picker', ref: (d) => this.div = d}, 'Choose a Color')
   }
 }
 
@@ -350,7 +335,7 @@ export class Toggle extends React.Component {
   }
 
   render() {
-    return <div className='hx-toggle' ref={(d) => this.div = d} {...this.props}></div>
+    return React.createElement('div', {className: 'hx-toggle', ref: (d) => this.div = d})
   }
 }
 
@@ -368,7 +353,7 @@ export class PivotTable extends React.Component {
   }
 
   render() {
-    return <div className='hx-pivot-table' ref={(d) => this.div = d} {...this.props}></div>
+    return React.createElement('div', {className: 'hx-pivot-table', ref: (d) => this.div = d})
   }
 }
 
@@ -386,7 +371,7 @@ export class TagInput extends React.Component {
   }
 
   render() {
-    return <div className='hx-tag-input' ref={(d) => this.div = d} {...this.props}></div>
+    return React.createElement('div', {className: 'hx-tag-input', ref: (d) => this.div = d})
   }
 }
 
@@ -399,7 +384,7 @@ export class AutoComplete extends React.Component {
   }
 
   render() {
-    return <input ref={(d) => this.div = d} {...this.props}></input>
+    return React.createElement('div', {className: 'hx-auto-complete', ref: (d) => this.div = d})
   }
 }
 
@@ -417,6 +402,6 @@ export class Slider extends React.Component {
   }
 
   render() {
-    return <div className='hx-slider' ref={(d) => this.div = d} {...this.props}></div>
+    return React.createElement('div', {className: 'hx-slider', ref: (d) => this.div = d})
   }
 }

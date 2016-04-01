@@ -19,6 +19,7 @@
 
     @codeblock bash
       bower install --save react
+      bower install --save react-dom
       bower install --save hexagon-js
       bower install --save hexagon-react
 
@@ -28,6 +29,7 @@
 
     @codeblock html
       <script src="bower_components/react/dist/react.js"/>
+      <script src="bower_components/react-dom/dist/react-dom.js"/>
       <script src="bower_components/hexagon-js/dist/hexagon-light/hexagon.js"/>
       <script src="bower_components/hexagon-react/dist/hexagon-react.js"/>
 

@@ -22,7 +22,7 @@ exports.example = function (entity, page, transform) {
       .on('error', (err) => reject(err))
   })
 
-  s.push(entity.cs().replace("from 'hexagon-react'", "from './hexagon-react.jsx'") + '\nReactDOM.render(example, document.getElementById("' + id + '"))')
+  s.push(entity.cs().replace("from 'hexagon-react'", "from './hexagon-react.js'") + '\nReactDOM.render(example, document.getElementById("' + id + '"))')
   s.push(null)
 
   return promise.then((js) => {

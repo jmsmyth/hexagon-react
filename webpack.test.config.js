@@ -8,17 +8,14 @@ module.exports = {
     path: 'target',
     filename: 'hexagon-react.test.js'
   },
-  resolve: {
-    extensions: ['', 'js', 'jsx']
-  },
   babel: {
-    presets: ['es2015', 'react']
+    presets: ['es2015']
   },
   isparta: {
     embedSource: true,
     noAutoWrap: true,
     babel: {
-      presets: ['es2015', 'react']
+      presets: ['es2015']
     }
   },
   module: {
@@ -28,8 +25,9 @@ module.exports = {
         loader: 'babel'
       },
       {
-        test: /.jsx?$/,
-        loader: 'isparta'
+        test: /hexagon-react.js/,
+        loader: 'isparta',
+        ignore: /test.jsx/
       }
     ]
   },
