@@ -4,7 +4,8 @@ import { Content, Group, Section } from './hexagon-react'
 import { TitleBar, TitleBarLink, TitleBarIcon } from './hexagon-react'
 import { Button, Label, Spinner, SpinnerWide } from './hexagon-react'
 import { Notice, Tree, Slider, Picker, InputGroup } from './hexagon-react'
-import { ProgressBar, Collapsible } from './hexagon-react'
+import { ProgressBar, Collapsible, NumberPicker } from './hexagon-react'
+import { ButtonGroup } from './hexagon-react'
 
 function createComponent (component) {
   const selection = hx.detached('div')
@@ -407,6 +408,158 @@ describe('hexagon-react', function () {
         selection.select('.hx-collapsible').component().hide()
         eventName.should.equal('change')
         eventValue.should.equal(false)
+      })
+    })
+  })
+
+  describe('<NumberPicker/>', () => {
+    it('should be a div with the hx-tree class', () => {
+      return createComponent(React.createElement(NumberPicker)).then((selection) => {
+        selection.select('.hx-number-picker').size().should.equal(1)
+      })
+    })
+
+    it('should initialise the component', () => {
+      return createComponent(React.createElement(NumberPicker)).then((selection) => {
+        selection.select('.hx-number-picker').component().should.be.an.instanceof(hx.NumberPicker)
+      })
+    })
+
+    it('should apply the context class correctly', () => {
+      return createComponent(React.createElement(NumberPicker, {context: 'positive'})).then((selection) => {
+        selection.select('.hx-positive').size().should.equal(1)
+      })
+    })
+
+    it('should update the value when the props change', () => {
+      return testProp({
+        component: NumberPicker,
+        initialProps: {value: 1},
+        props: {value: 2},
+        test: (selection, props) => {
+          selection.select('.hx-number-picker').component().value().should.eql(props.value)
+        }
+      })
+    })
+
+    it('should update the min property when the props change', () => {
+      return testProp({
+        component: NumberPicker,
+        initialProps: {min: 1},
+        props: {min: 2},
+        test: (selection, props) => {
+          selection.select('.hx-number-picker').component().min().should.eql(props.min)
+        }
+      })
+    })
+
+    it('should update the max property when the props change', () => {
+      return testProp({
+        component: NumberPicker,
+        initialProps: {max: 1},
+        props: {max: 2},
+        test: (selection, props) => {
+          selection.select('.hx-number-picker').component().max().should.eql(props.max)
+        }
+      })
+    })
+
+    it('should update the disabled property when the props change', () => {
+      return testProp({
+        component: NumberPicker,
+        initialProps: {disabled: false},
+        props: {disabled: true},
+        test: (selection, props) => {
+          selection.select('.hx-number-picker').component().disabled().should.eql(props.disabled)
+        }
+      })
+    })
+
+    it('should propagate events upwards', () => {
+      let changeValue = undefined
+      const onEvent = (name, value) => changeValue = value
+      return testProp({
+        component: NumberPicker,
+        initialProps: {onEvent, onEvent, value: 1},
+        props: {onEvent, onEvent, value: 2},
+        test: (selection, props) => {
+          selection.select('.hx-number-picker').component().value().should.eql(props.value)
+        }
+      }).then(() => {
+        changeValue.should.eql({value: 2})
+      })
+    })
+  })
+
+  describe('<ButtonGroup/>', () => {
+    it('should be a div with the hx-tree class', () => {
+      return createComponent(React.createElement(ButtonGroup)).then((selection) => {
+        selection.select('.hx-button-group').size().should.equal(1)
+      })
+    })
+
+    it('should initialise the component', () => {
+      return createComponent(React.createElement(ButtonGroup)).then((selection) => {
+        selection.select('.hx-button-group').component().should.be.an.instanceof(hx.ButtonGroup)
+      })
+    })
+
+    it('should update the renderer when the props change', () => {
+      return testProp({
+        component: ButtonGroup,
+        initialProps: {renderer: x => x},
+        props: {renderer: x => x},
+        test: (selection, props) => {
+          selection.select('.hx-button-group').component().renderer().should.equal(props.renderer)
+        }
+      })
+    })
+
+    it('should update the items when the props change', () => {
+      return testProp({
+        component: ButtonGroup,
+        initialProps: {items: ['one', 'two']},
+        props: {items: ['one', 'two', 'three']},
+        test: (selection, props) => {
+          selection.select('.hx-button-group').component().items().should.eql(props.items)
+        }
+      })
+    })
+
+    it('should update the value when the props change', () => {
+      return testProp({
+        component: ButtonGroup,
+        initialProps: {value: 'one', items: ['one', 'two', 'three']},
+        props: {value: 'two', items: ['one', 'two', 'three']},
+        test: (selection, props) => {
+          selection.select('.hx-button-group').component().value().should.eql(props.value)
+        }
+      })
+    })
+
+    it('should update the disabled property when the props change', () => {
+      return testProp({
+        component: ButtonGroup,
+        initialProps: {disabled: false},
+        props: {disabled: true},
+        test: (selection, props) => {
+          selection.select('.hx-button-group').component().disabled().should.eql(props.disabled)
+        }
+      })
+    })
+
+    it('should propagate events upwards', () => {
+      let changeValue = undefined
+      const onEvent = (name, value) => changeValue = value
+      return testProp({
+        component: ButtonGroup,
+        initialProps: {onEvent, onEvent, value: 'one', items: ['one', 'two', 'three']},
+        props: {onEvent, onEvent, value: 'two', items: ['one', 'two', 'three']},
+        test: (selection, props) => {
+          selection.select('.hx-button-group').component().value().should.eql(props.value)
+        }
+      }).then(() => {
+        changeValue.should.eql({value: 'two', cause: 'api'})
       })
     })
   })
