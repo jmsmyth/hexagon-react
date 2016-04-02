@@ -3,7 +3,8 @@ var should = chai.should()
 import { Content, Group, Section } from './hexagon-react'
 import { TitleBar, TitleBarLink, TitleBarIcon } from './hexagon-react'
 import { Button, Label, Spinner, SpinnerWide } from './hexagon-react'
-import { Notice, Tree, Slider, Picker } from './hexagon-react'
+import { Notice, Tree, Slider, Picker, InputGroup } from './hexagon-react'
+import { ProgressBar, Collapsible } from './hexagon-react'
 
 function createComponent (component) {
   const selection = hx.detached('div')
@@ -44,53 +45,47 @@ describe('hexagon-react', function () {
   describe('<Content/>', () => {
     it('should be a div with the hx-content class', () => {
       return createComponent(React.createElement(Content)).then((selection) => {
-        selection.select('.hx-content').size().should.equal(1)
+        selection.selectAll('.hx-content').size().should.equal(1)
       })
-
     })
   })
 
   describe('<Group/>', () => {
     it('should be a div with the hx-group class and hx-horizontal class by default', () => {
       return createComponent(React.createElement(Group)).then((selection) => {
-        selection.select('.hx-group').size().should.equal(1)
+        selection.selectAll('.hx-group').size().should.equal(1)
         selection.select('.hx-group').classed('hx-horizontal').should.be.true
       })
-
     })
 
     it('should have the hx-vertical class when direction="horizontal"', () => {
       return createComponent(React.createElement(Group, {direction: 'horizontal'})).then((selection) => {
-        selection.select('.hx-group').size().should.equal(1)
+        selection.selectAll('.hx-group').size().should.equal(1)
         selection.select('.hx-group').classed('hx-horizontal').should.be.true
       })
-
     })
 
     it('should have the hx-vertical class when direction="vertical"', () => {
       return createComponent(React.createElement(Group, {direction: 'vertical'})).then((selection) => {
-        selection.select('.hx-group').size().should.equal(1)
+        selection.selectAll('.hx-group').size().should.equal(1)
         selection.select('.hx-group').classed('hx-vertical').should.be.true
       })
-
     })
   })
 
   describe('<Section/>', () => {
     it('should be a div with the hx-section class', () => {
       return createComponent(React.createElement(Section)).then((selection) => {
-        selection.select('.hx-section').size().should.equal(1)
+        selection.selectAll('.hx-section').size().should.equal(1)
       })
-
     })
   })
 
   describe('<TitleBar/>', () => {
     it('should be a div with the hx-heading class', () => {
       return createComponent(React.createElement(TitleBar)).then((selection) => {
-        selection.select('.hx-heading').size().should.equal(1)
+        selection.selectAll('.hx-heading').size().should.equal(1)
       })
-
     })
 
     it('should have the right structure', () => {
@@ -103,21 +98,18 @@ describe('hexagon-react', function () {
         selection.selectAll('.hx-titlebar-menu-icon').size().should.equal(0)
         selection.selectAll('.hx-titlebar-link').size().should.equal(0)
       })
-
     })
 
     it('should display the title properly', () => {
       return createComponent(React.createElement(TitleBar, {title: 'Custom Title'})).then((selection) => {
         selection.select('.hx-titlebar-title').text().should.equal('Custom Title')
       })
-
     })
 
     it('should display the subtitle properly', () => {
       return createComponent(React.createElement(TitleBar, {subtitle: 'Custom Title'})).then((selection) => {
         selection.select('.hx-titlebar-subtitle').text().should.equal('Custom Title')
       })
-
     })
 
     it('should display the links properly', () => {
@@ -147,14 +139,12 @@ describe('hexagon-react', function () {
       return createComponent(React.createElement(Button)).then((selection) => {
         selection.select('.hx-btn').size().should.equal(1)
       })
-
     })
 
     it('should apply the context class correctly', () => {
       return createComponent(React.createElement(Button, {context: 'positive'})).then((selection) => {
         selection.select('.hx-positive').size().should.equal(1)
       })
-
     })
   })
 
@@ -163,7 +153,6 @@ describe('hexagon-react', function () {
       return createComponent(React.createElement(Spinner)).then((selection) => {
         selection.select('.hx-spinner').size().should.equal(1)
       })
-
     })
   })
 
@@ -172,7 +161,6 @@ describe('hexagon-react', function () {
       return createComponent(React.createElement(SpinnerWide)).then((selection) => {
         selection.select('.hx-spinner-wide').size().should.equal(1)
       })
-
     })
   })
 
@@ -181,14 +169,12 @@ describe('hexagon-react', function () {
       return createComponent(React.createElement(Label)).then((selection) => {
         selection.select('.hx-label').size().should.equal(1)
       })
-
     })
 
     it('should apply the context class correctly', () => {
       return createComponent(React.createElement(Label, {context: 'positive'})).then((selection) => {
         selection.select('.hx-positive').size().should.equal(1)
       })
-
     })
   })
 
@@ -197,14 +183,12 @@ describe('hexagon-react', function () {
       return createComponent(React.createElement(Notice)).then((selection) => {
         selection.selectAll('.hx-notice').size().should.equal(1)
       })
-
     })
 
     it('should apply the context class correctly', () => {
       return createComponent(React.createElement(Notice, {context: 'positive'})).then((selection) => {
         selection.selectAll('.hx-positive').size().should.equal(1)
       })
-
     })
 
     it('should create a header section', () => {
@@ -212,7 +196,6 @@ describe('hexagon-react', function () {
         selection.selectAll('.hx-notice-header').size().should.equal(1)
         selection.select('.hx-notice-header').text().should.equal('Title')
       })
-
     })
 
     it('should create a body section', () => {
@@ -220,7 +203,6 @@ describe('hexagon-react', function () {
         selection.selectAll('.hx-notice-body').size().should.equal(1)
         selection.select('.hx-notice-body').selectAll('.body').size().should.equal(1)
       })
-
     })
 
   })
@@ -230,14 +212,12 @@ describe('hexagon-react', function () {
       return createComponent(React.createElement(Tree)).then((selection) => {
         selection.select('.hx-tree').size().should.equal(1)
       })
-
     })
 
     it('should initialise the component', () => {
       return createComponent(React.createElement(Tree)).then((selection) => {
         selection.select('.hx-tree').component().should.be.an.instanceof(hx.Tree)
       })
-
     })
 
     it('should update the renderer when the props change', () => {
@@ -268,14 +248,18 @@ describe('hexagon-react', function () {
       return createComponent(React.createElement(Picker)).then((selection) => {
         selection.select('.hx-picker').size().should.equal(1)
       })
-
     })
 
     it('should initialise the component', () => {
       return createComponent(React.createElement(Picker)).then((selection) => {
         selection.select('.hx-picker').component().should.be.an.instanceof(hx.Picker)
       })
+    })
 
+    it('should apply the context class correctly', () => {
+      return createComponent(React.createElement(Picker, {context: 'positive'})).then((selection) => {
+        selection.select('.hx-positive').size().should.equal(1)
+      })
     })
 
     it('should update the renderer when the props change', () => {
@@ -322,7 +306,7 @@ describe('hexagon-react', function () {
       })
     })
 
-    it('should update the disabled property when the props change', () => {
+    it('should propagate events upwards', () => {
       let changeValue = undefined
       const onEvent = (name, value) => changeValue = value
       return testProp({
@@ -338,19 +322,106 @@ describe('hexagon-react', function () {
     })
   })
 
+  describe('<InputGroup/>', () => {
+    it('should be a span with the hx-input-group class', () => {
+      return createComponent(React.createElement(InputGroup)).then((selection) => {
+        selection.selectAll('.hx-input-group').size().should.equal(1)
+      })
+    })
+  })
+
+  describe('<ProgressBar/>', () => {
+    it('should be a div with the hx-tree class', () => {
+      return createComponent(React.createElement(ProgressBar)).then((selection) => {
+        selection.select('.hx-progress-bar').size().should.equal(1)
+      })
+    })
+
+    it('should initialise the component', () => {
+      return createComponent(React.createElement(ProgressBar)).then((selection) => {
+        selection.select('.hx-progress-bar').component().should.be.an.instanceof(hx.ProgressBar)
+      })
+    })
+
+    it('should apply the context class correctly', () => {
+      return createComponent(React.createElement(ProgressBar, {context: 'positive'})).then((selection) => {
+        selection.select('.hx-positive').size().should.equal(1)
+      })
+    })
+
+    it('should update the value when the props change', () => {
+      return testProp({
+        component: ProgressBar,
+        initialProps: {value: 0.25},
+        props: {value: 0.25},
+        test: (selection, props) => {
+          selection.select('.hx-progress-bar').component().value().should.equal(props.value)
+        }
+      })
+    })
+
+    it('should update the value when the props change', () => {
+      return testProp({
+        component: ProgressBar,
+        initialProps: {},
+        props: {},
+        test: (selection, props) => {
+          selection.select('.hx-progress-bar').component().value().should.equal(0)
+        }
+      })
+    })
+  })
+
+  describe('<Collapsible/>', () => {
+    it('should be a span with the hx-collapsible class', () => {
+      return createComponent(React.createElement(Collapsible)).then((selection) => {
+        selection.selectAll('.hx-collapsible').size().should.equal(1)
+      })
+    })
+
+    it('should create a heading section', () => {
+      return createComponent(React.createElement(Collapsible, { title: 'Title'})).then((selection) => {
+        selection.selectAll('.hx-collapsible-heading').size().should.equal(1)
+        selection.select('.hx-collapsible-heading').text().should.equal('Title')
+      })
+    })
+
+    it('should create a content section', () => {
+      return createComponent(React.createElement(Collapsible, undefined, React.createElement('div', {className: 'body'}))).then((selection) => {
+        selection.selectAll('.hx-collapsible-content').size().should.equal(1)
+        selection.select('.hx-collapsible-content').selectAll('.body').size().should.equal(1)
+      })
+    })
+
+    it('should propagate events upwarcs', () => {
+      let eventName = undefined
+      let eventValue = undefined
+      const onEvent = (name, value) => {
+        eventName = name
+        eventValue = value
+      }
+      return createComponent(React.createElement(Collapsible, {onEvent: onEvent})).then((selection) => {
+        selection.select('.hx-collapsible').component().show()
+        eventName.should.equal('change')
+        eventValue.should.equal(true)
+        selection.select('.hx-collapsible').component().hide()
+        eventName.should.equal('change')
+        eventValue.should.equal(false)
+      })
+    })
+  })
+
   describe('<Slider/>', () => {
     it('should be a div with the hx-slider class', () => {
       return createComponent(React.createElement(Slider)).then((selection) => {
         selection.select('.hx-slider').size().should.equal(1)
       })
-
     })
 
     it('should initialise the component', () => {
       return createComponent(React.createElement(Slider)).then((selection) => {
         selection.select('.hx-slider').component().should.be.an.instanceof(hx.Slider)
       })
-
     })
   })
 
