@@ -3,9 +3,12 @@ var should = chai.should()
 import { Content, Group, Section } from './hexagon-react'
 import { TitleBar, TitleBarLink, TitleBarIcon } from './hexagon-react'
 import { Button, Label, Spinner, SpinnerWide } from './hexagon-react'
-import { Notice, Tree, Slider, Picker, InputGroup } from './hexagon-react'
+import { Notice, Tree, Picker, InputGroup } from './hexagon-react'
 import { ProgressBar, Collapsible, NumberPicker } from './hexagon-react'
-import { ButtonGroup } from './hexagon-react'
+import { ButtonGroup, DatePicker, TimePicker } from './hexagon-react'
+import { DateTimePicker, ColorPicker, Toggle } from './hexagon-react'
+import { PivotTable, TagInput, AutoComplete, Slider } from './hexagon-react'
+import { TimeSlider } from './hexagon-react'
 
 function createComponent (component) {
   const selection = hx.detached('div')
@@ -312,8 +315,8 @@ describe('hexagon-react', function () {
       const onEvent = (name, value) => changeValue = value
       return testProp({
         component: Picker,
-        initialProps: {onEvent, onEvent, value: 'one', items: ['one', 'two', 'three']},
-        props: {onEvent, onEvent, value: 'two', items: ['one', 'two', 'three']},
+        initialProps: {onEvent, value: 'one', items: ['one', 'two', 'three']},
+        props: {onEvent, value: 'two', items: ['one', 'two', 'three']},
         test: (selection, props) => {
           selection.select('.hx-picker').component().value().should.eql(props.value)
         }
@@ -401,7 +404,7 @@ describe('hexagon-react', function () {
         eventName = name
         eventValue = value
       }
-      return createComponent(React.createElement(Collapsible, {onEvent: onEvent})).then((selection) => {
+      return createComponent(React.createElement(Collapsible, {onEvent})).then((selection) => {
         selection.select('.hx-collapsible').component().show()
         eventName.should.equal('change')
         eventValue.should.equal(true)
@@ -480,8 +483,8 @@ describe('hexagon-react', function () {
       const onEvent = (name, value) => changeValue = value
       return testProp({
         component: NumberPicker,
-        initialProps: {onEvent, onEvent, value: 1},
-        props: {onEvent, onEvent, value: 2},
+        initialProps: {onEvent, value: 1},
+        props: {onEvent, value: 2},
         test: (selection, props) => {
           selection.select('.hx-number-picker').component().value().should.eql(props.value)
         }
@@ -553,13 +556,455 @@ describe('hexagon-react', function () {
       const onEvent = (name, value) => changeValue = value
       return testProp({
         component: ButtonGroup,
-        initialProps: {onEvent, onEvent, value: 'one', items: ['one', 'two', 'three']},
-        props: {onEvent, onEvent, value: 'two', items: ['one', 'two', 'three']},
+        initialProps: {onEvent, value: 'one', items: ['one', 'two', 'three']},
+        props: {onEvent, value: 'two', items: ['one', 'two', 'three']},
         test: (selection, props) => {
           selection.select('.hx-button-group').component().value().should.eql(props.value)
         }
       }).then(() => {
         changeValue.should.eql({value: 'two', cause: 'api'})
+      })
+    })
+  })
+
+  describe('<DatePicker/>', () => {
+    it('should be a div with the hx-tree class', () => {
+      return createComponent(React.createElement(DatePicker)).then((selection) => {
+        selection.select('.hx-date-picker').size().should.equal(1)
+      })
+    })
+
+    it('should initialise the component', () => {
+      return createComponent(React.createElement(DatePicker)).then((selection) => {
+        selection.select('.hx-date-picker').component().should.be.an.instanceof(hx.DatePicker)
+      })
+    })
+
+    it('should update the date when the props change', () => {
+      const date1 = new Date(2016, 0, 1)
+      const date2 = new Date(2016, 0, 2)
+      return testProp({
+        component: DatePicker,
+        initialProps: {date: date1},
+        props: {date: date2},
+        test: (selection, props) => {
+          selection.select('.hx-date-picker').component().date().should.eql(props.date)
+        }
+      })
+    })
+
+    it('should update the min property when the props change', () => {
+      const date1 = new Date(2016, 0, 1)
+      const date2 = new Date(2016, 0, 2)
+      return testProp({
+        component: DatePicker,
+        initialProps: {min: date1},
+        props: {min: date2},
+        test: (selection, props) => {
+          selection.select('.hx-date-picker').component().validRange().start.should.eql(props.min)
+        }
+      })
+    })
+
+    it('should update the max property when the props change', () => {
+      const date1 = new Date(2016, 0, 1)
+      const date2 = new Date(2016, 0, 2)
+      return testProp({
+        component: DatePicker,
+        initialProps: {max: date1},
+        props: {max: date2},
+        test: (selection, props) => {
+          selection.select('.hx-date-picker').component().validRange().end.should.eql(props.max)
+        }
+      })
+    })
+
+    it('should update the disabled property when the props change', () => {
+      return testProp({
+        component: DatePicker,
+        initialProps: {disabled: false},
+        props: {disabled: true},
+        test: (selection, props) => {
+          selection.select('.hx-date-picker').component().disabled().should.eql(props.disabled)
+        }
+      })
+    })
+
+    it('should propagate events upwards', () => {
+      let changeValue = undefined
+      const date1 = new Date(2016, 0, 1)
+      const date2 = new Date(2016, 0, 2)
+      const onEvent = (name, value) => changeValue = value
+      return testProp({
+        component: DatePicker,
+        initialProps: {onEvent, date: date1},
+        props: {onEvent, date: date2},
+        test: (selection, props) => {
+          selection.select('.hx-date-picker').component().date().should.eql(props.date)
+        }
+      }).then(() => {
+        changeValue.should.eql({type: 'api'})
+      })
+    })
+  })
+
+  describe('<TimePicker/>', () => {
+    it('should be a div with the hx-tree class', () => {
+      return createComponent(React.createElement(TimePicker)).then((selection) => {
+        selection.select('.hx-time-picker').size().should.equal(1)
+      })
+    })
+
+    it('should initialise the component', () => {
+      return createComponent(React.createElement(TimePicker)).then((selection) => {
+        selection.select('.hx-time-picker').component().should.be.an.instanceof(hx.TimePicker)
+      })
+    })
+
+    it('should update the date when the props change', () => {
+      const date1 = new Date(2016, 0, 1)
+      const date2 = new Date(2016, 0, 2)
+      return testProp({
+        component: TimePicker,
+        initialProps: {date: date1},
+        props: {date: date2},
+        test: (selection, props) => {
+          selection.select('.hx-time-picker').component().date().should.eql(props.date)
+        }
+      })
+    })
+
+    it('should update the disabled property when the props change', () => {
+      return testProp({
+        component: TimePicker,
+        initialProps: {disabled: false},
+        props: {disabled: true},
+        test: (selection, props) => {
+          selection.select('.hx-time-picker').component().disabled().should.eql(props.disabled)
+        }
+      })
+    })
+
+    it('should propagate events upwards', () => {
+      let changeValue = undefined
+      const date1 = new Date(2016, 0, 1)
+      const date2 = new Date(2016, 0, 2)
+      const onEvent = (name, value) => changeValue = value
+      return testProp({
+        component: TimePicker,
+        initialProps: {onEvent, date: date1},
+        props: {onEvent, date: date2},
+        test: (selection, props) => {
+          selection.select('.hx-time-picker').component().date().should.eql(props.date)
+        }
+      }).then(() => {
+        changeValue.should.eql({type: 'api'})
+      })
+    })
+  })
+
+  describe('<DateTimePicker/>', () => {
+    it('should be a div with the hx-tree class', () => {
+      return createComponent(React.createElement(DateTimePicker)).then((selection) => {
+        selection.select('.hx-date-time-picker').size().should.equal(1)
+      })
+    })
+
+    it('should initialise the component', () => {
+      return createComponent(React.createElement(DateTimePicker)).then((selection) => {
+        selection.select('.hx-date-time-picker').component().should.be.an.instanceof(hx.DateTimePicker)
+      })
+    })
+
+    it('should update the date when the props change', () => {
+      const date1 = new Date(2016, 0, 1)
+      const date2 = new Date(2016, 0, 2)
+      return testProp({
+        component: DateTimePicker,
+        initialProps: {date: date1},
+        props: {date: date2},
+        test: (selection, props) => {
+          selection.select('.hx-date-time-picker').component().date().should.eql(props.date)
+        }
+      })
+    })
+
+    it('should update the disabled property when the props change', () => {
+      return testProp({
+        component: DateTimePicker,
+        initialProps: {disabled: false},
+        props: {disabled: true},
+        test: (selection, props) => {
+          selection.select('.hx-date-time-picker').component().disabled().should.eql(props.disabled)
+        }
+      })
+    })
+
+    it('should propagate events upwards', () => {
+      let changeValue = undefined
+      const date1 = new Date(2016, 0, 1)
+      const date2 = new Date(2016, 0, 2)
+      const onEvent = (name, value) => changeValue = value
+      return testProp({
+        component: DateTimePicker,
+        initialProps: {onEvent, date: date1},
+        props: {onEvent, date: date2},
+        test: (selection, props) => {
+          selection.select('.hx-date-time-picker').component().date().should.eql(props.date)
+        }
+      }).then(() => {
+        changeValue.should.eql(date2)
+      })
+    })
+  })
+
+  describe('<ColorPicker/>', () => {
+    it('should be a div with the hx-tree class', () => {
+      return createComponent(React.createElement(ColorPicker)).then((selection) => {
+        selection.select('.hx-color-picker').size().should.equal(1)
+      })
+    })
+
+    it('should initialise the component', () => {
+      return createComponent(React.createElement(ColorPicker)).then((selection) => {
+        selection.select('.hx-color-picker').component().should.be.an.instanceof(hx.ColorPicker)
+      })
+    })
+
+    it('should update the date when the props change', () => {
+      const color1 = '#ff00ff'
+      const color2 = '#ffff00'
+      return testProp({
+        component: ColorPicker,
+        initialProps: {value: color1},
+        props: {value: color2},
+        test: (selection, props) => {
+          selection.select('.hx-color-picker').component().value().should.eql(props.value)
+        }
+      })
+    })
+
+    it('should update the disabled property when the props change', () => {
+      return testProp({
+        component: ColorPicker,
+        initialProps: {disabled: false},
+        props: {disabled: true},
+        test: (selection, props) => {
+          selection.select('.hx-color-picker').component().disabled().should.eql(props.disabled)
+        }
+      })
+    })
+
+    it('should propagate events upwards', () => {
+      let changeValue = undefined
+      const color1 = '#ff00ff'
+      const color2 = '#ffff00'
+      const onEvent = (name, value) => changeValue = value
+      return testProp({
+        component: ColorPicker,
+        initialProps: {onEvent, value: color1},
+        props: {onEvent, value: color2},
+        test: (selection, props) => {
+          selection.select('.hx-color-picker').component().value().should.eql(props.value)
+          // XXX: fake the event, since hexagon doesn't emit it. This needs fixing in hexagon
+          selection.select('.hx-color-picker').component().emit('change', {value: color2, cause: 'api'})
+        }
+      }).then(() => {
+        changeValue.should.eql({value: color2, cause: 'api'})
+      })
+    })
+  })
+
+  describe('<Toggle/>', () => {
+    it('should be a div with the hx-tree class', () => {
+      return createComponent(React.createElement(Toggle)).then((selection) => {
+        selection.select('.hx-toggle').size().should.equal(1)
+      })
+    })
+
+    it('should initialise the component', () => {
+      return createComponent(React.createElement(Toggle)).then((selection) => {
+        selection.select('.hx-toggle').component().should.be.an.instanceof(hx.Toggle)
+      })
+    })
+
+    it('should update the value when the props change', () => {
+      return testProp({
+        component: Toggle,
+        initialProps: {value: true},
+        props: {value: false},
+        test: (selection, props) => {
+          selection.select('.hx-toggle').component().value().should.equal(props.value)
+        }
+      })
+    })
+    //
+    // it('should update the disabled property when the props change', () => {
+    //   return testProp({
+    //     component: Toggle,
+    //     initialProps: {disabled: false},
+    //     props: {disabled: true},
+    //     test: (selection, props) => {
+    //       selection.select('.hx-toggle').component().disabled().should.eql(props.disabled)
+    //     }
+    //   })
+    // })
+
+    it('should propagate events upwards', () => {
+      let changeValue = undefined
+      const onEvent = (name, value) => changeValue = value
+      return testProp({
+        component: Toggle,
+        initialProps: {onEvent, value: true},
+        props: {onEvent, value: false},
+        test: (selection, props) => {
+          selection.select('.hx-toggle').component().value().should.eql(props.value)
+          // XXX: fake the event, since hexagon doesn't emit it. This needs fixing in hexagon
+          selection.select('.hx-toggle').component().emit('change', {value: props.value, cause: 'api'})
+        }
+      }).then(() => {
+        changeValue.should.eql({value: false, cause: 'api'})
+      })
+    })
+
+    it('should not emit when the props dont change', () => {
+      let changeValue = 'not set'
+      const onEvent = (name, value) => changeValue = value
+      return testProp({
+        component: Toggle,
+        initialProps: {onEvent},
+        props: {onEvent},
+        test: (selection, props) => {
+          selection.select('.hx-toggle').component().value().should.eql(false)
+        }
+      }).then(() => {
+        changeValue.should.equal('not set')
+      })
+    })
+  })
+
+  describe('<PivotTable/>', () => {
+    it('should be a div with the hx-pivot-table class', () => {
+      return createComponent(React.createElement(PivotTable)).then((selection) => {
+        selection.select('.hx-pivot-table').size().should.equal(1)
+      })
+    })
+
+    it('should update the data when the props change', () => {
+      return testProp({
+        component: PivotTable,
+        initialProps: {data: []},
+        props: {data: []},
+        test: (selection, props) => {
+          selection.select('.hx-pivot-table').component().data().should.eql(props.data)
+        }
+      })
+    })
+
+    it('should not set the data property when not defined', () => {
+      return testProp({
+        component: PivotTable,
+        initialProps: {},
+        props: {},
+        test: (selection, props) => {
+          should.not.exist(selection.select('.hx-pivot-table').component().data())
+        }
+      })
+    })
+
+    it('should initialise the component', () => {
+      return createComponent(React.createElement(PivotTable)).then((selection) => {
+        selection.select('.hx-pivot-table').component().should.be.an.instanceof(hx.PivotTable)
+      })
+    })
+  })
+
+  describe('<TagInput/>', () => {
+    it('should be a div with the hx-pivot-table class', () => {
+      return createComponent(React.createElement(TagInput)).then((selection) => {
+        selection.select('.hx-tag-input').size().should.equal(1)
+      })
+    })
+
+    it('should initialise the component', () => {
+      return createComponent(React.createElement(TagInput)).then((selection) => {
+        selection.select('.hx-tag-input').component().should.be.an.instanceof(hx.TagInput)
+      })
+    })
+
+    it('should update the items when the props change', () => {
+      return testProp({
+        component: TagInput,
+        initialProps: {items: ['one', 'two']},
+        props: {items: ['one', 'two', 'three']},
+        test: (selection, props) => {
+          selection.select('.hx-tag-input').component().items().should.eql(props.items)
+        }
+      })
+    })
+
+    it('should update the disabled property when the props change', () => {
+      return testProp({
+        component: TagInput,
+        initialProps: {disabled: false},
+        props: {disabled: true},
+        test: (selection, props) => {
+          selection.select('.hx-tag-input').component().disabled().should.eql(props.disabled)
+        }
+      })
+    })
+
+    it('should propagate events upwards', () => {
+      let events = []
+      const onEvent = (name, value) => {
+        events.push({name, value})
+      }
+      return testProp({
+        component: TagInput,
+        initialProps: {onEvent, items: ['one', 'two']},
+        props: {onEvent, items: ['one', 'two', 'three']},
+        test: (selection, props) => {
+          selection.select('.hx-tag-input').component().items().should.eql(props.items)
+        }
+      }).then(() => {
+        events.should.eql([
+          {name: 'remove', value: {value: 'one', type: 'api'}}, // XXX: type should be cause in hexagon
+          {name: 'remove', value: {value: 'two', type: 'api'}},
+          {name: 'add', value: {value: 'one', type: 'api'}},
+          {name: 'add', value: {value: 'two', type: 'api'}},
+          {name: 'add', value: {value: 'three', type: 'api'}}
+        ])
+      })
+    })
+  })
+
+  describe('<AutoComplete/>', () => {
+    it('should be a div with the hx-slider class', () => {
+      return createComponent(React.createElement(AutoComplete, {data: ['one', 'two']})).then((selection) => {
+        selection.select('.hx-auto-complete').size().should.equal(1)
+      })
+    })
+
+    it('should initialise the component', () => {
+      return createComponent(React.createElement(AutoComplete, {data: ['one', 'two']})).then((selection) => {
+        selection.select('.hx-auto-complete').component().should.be.an.instanceof(hx.AutoComplete)
+      })
+    })
+
+    it('should propagate events upwards', () => {
+      let changeValue = undefined
+      const onEvent = (name, value) => changeValue = value
+      return testProp({
+        component: AutoComplete,
+        initialProps: {onEvent, data: ['one', 'two']},
+        props: {onEvent, data: ['one', 'two']},
+        test: (selection, props) => {
+          // ////selection.select('.hx-auto-complete').component().value().should.eql(props.value)
+          // fake the event, as manipulating the dom to get the event to send it more difficult
+          selection.select('.hx-auto-complete').component().value('one')
+        }
+      }).then(() => {
+        changeValue.should.eql('one')
       })
     })
   })
@@ -574,6 +1019,177 @@ describe('hexagon-react', function () {
     it('should initialise the component', () => {
       return createComponent(React.createElement(Slider)).then((selection) => {
         selection.select('.hx-slider').component().should.be.an.instanceof(hx.Slider)
+      })
+    })
+
+    it('should update the disabled property when the props change', () => {
+      return testProp({
+        component: Slider,
+        initialProps: {disabled: false},
+        props: {disabled: true},
+        test: (selection, props) => {
+          selection.select('.hx-slider').component().disabled().should.eql(props.disabled)
+        }
+      })
+    })
+
+    it('should update the discreteValues property when the props change', () => {
+      return testProp({
+        component: Slider,
+        initialProps: {discreteValues: ['one', 'two']},
+        props: {discreteValues: ['one', 'two', 'three']},
+        test: (selection, props) => {
+          selection.select('.hx-slider').component().discreteValues().should.eql(props.discreteValues)
+        }
+      })
+    })
+
+    it('should update the min property when the props change', () => {
+      return testProp({
+        component: Slider,
+        initialProps: {min: 2},
+        props: {min: 3},
+        test: (selection, props) => {
+          selection.select('.hx-slider').component().min().should.eql(props.min)
+        }
+      })
+    })
+
+    it('should update the max property when the props change', () => {
+      return testProp({
+        component: Slider,
+        initialProps: {max: 2},
+        props: {max: 3},
+        test: (selection, props) => {
+          selection.select('.hx-slider').component().max().should.eql(props.max)
+        }
+      })
+    })
+
+    it('should update the step property when the props change', () => {
+      return testProp({
+        component: Slider,
+        initialProps: {step: 2},
+        props: {step: 3},
+        test: (selection, props) => {
+          selection.select('.hx-slider').component().step().should.eql(props.step)
+        }
+      })
+    })
+
+    it('should set the type property', () => {
+      return createComponent(React.createElement(Slider, {type: 'range'})).then((selection) => {
+        selection.select('.hx-slider').component().options.type.should.equal('range')
+      })
+    })
+
+    it('should propagate events upwards', () => {
+      let changeValue = undefined
+      const onEvent = (name, value) => changeValue = value
+      return testProp({
+        component: Slider,
+        initialProps: {onEvent, value: 0.25},
+        props: {onEvent, value: 0.75},
+        test: (selection, props) => {
+          selection.select('.hx-slider').component().value().should.eql(props.value)
+          // XXX: hexagon should emit this really
+          selection.select('.hx-slider').component().emit('change', {value: props.value, cause: 'api'})
+        }
+      }).then(() => {
+        changeValue.should.eql({value: 0.75, cause: 'api'})
+      })
+    })
+  })
+
+  describe('<TimeSlider/>', () => {
+    it('should be a div with the hx-slider class', () => {
+      return createComponent(React.createElement(TimeSlider)).then((selection) => {
+        selection.select('.hx-slider').size().should.equal(1)
+      })
+    })
+
+    it('should initialise the component', () => {
+      return createComponent(React.createElement(TimeSlider)).then((selection) => {
+        selection.select('.hx-slider').component().should.be.an.instanceof(hx.TimeSlider)
+      })
+    })
+
+    it('should update the disabled property when the props change', () => {
+      return testProp({
+        component: TimeSlider,
+        initialProps: {disabled: false},
+        props: {disabled: true},
+        test: (selection, props) => {
+          selection.select('.hx-slider').component().disabled().should.eql(props.disabled)
+        }
+      })
+    })
+
+    it('should update the discreteValues property when the props change', () => {
+      return testProp({
+        component: TimeSlider,
+        initialProps: {discreteValues: [new Date(2015), new Date(2016)]},
+        props: {discreteValues: [new Date(2015), new Date(2016), new Date(2017)]},
+        test: (selection, props) => {
+          selection.select('.hx-slider').component().discreteValues().should.eql(props.discreteValues)
+        }
+      })
+    })
+
+    it('should update the min property when the props change', () => {
+      return testProp({
+        component: TimeSlider,
+        initialProps: {min: new Date(2015)},
+        props: {min: new Date(2016)},
+        test: (selection, props) => {
+          selection.select('.hx-slider').component().min().should.eql(props.min)
+        }
+      })
+    })
+
+    it('should update the max property when the props change', () => {
+      return testProp({
+        component: TimeSlider,
+        initialProps: {max: new Date(2015)},
+        props: {max: new Date(2016)},
+        test: (selection, props) => {
+          selection.select('.hx-slider').component().max().should.eql(props.max)
+        }
+      })
+    })
+
+    it('should update the step property when the props change', () => {
+      return testProp({
+        component: TimeSlider,
+        initialProps: {step: new Date(2015)},
+        props: {step: new Date(2016)},
+        test: (selection, props) => {
+          selection.select('.hx-slider').component().step().should.eql(props.step)
+        }
+      })
+    })
+
+    it('should set the type property', () => {
+      return createComponent(React.createElement(TimeSlider, {type: 'range'})).then((selection) => {
+        selection.select('.hx-slider').component().options.type.should.equal('range')
+      })
+    })
+
+    it('should propagate events upwards', () => {
+      let changeValue = undefined
+      const date = new Date
+      const onEvent = (name, value) => changeValue = value
+      return testProp({
+        component: TimeSlider,
+        initialProps: {onEvent, value: new Date},
+        props: {onEvent, value: date},
+        test: (selection, props) => {
+          selection.select('.hx-slider').component().value().should.eql(props.value)
+          // XXX: hexagon should emit this really
+          selection.select('.hx-slider').component().emit('change', {value: props.value, cause: 'api'})
+        }
+      }).then(() => {
+        changeValue.should.eql({value: date, cause: 'api'})
       })
     })
   })

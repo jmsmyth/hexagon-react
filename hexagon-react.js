@@ -329,7 +329,7 @@ export class Toggle extends React.Component {
   }
 
   componentDidUpdate(props) {
-    if (this.props.value) this.component.value(this.props.value)
+    if (this.props.value !== undefined) this.component.value(this.props.value)
   // XXX: add this to hexagon
   // if (hx.defined(this.props.disabled)) this.component.disabled(this.props.disabled)
   }
@@ -394,11 +394,39 @@ export class Slider extends React.Component {
   componentDidMount() {
     this.component = new hx.Slider(this.div, this.props)
     if (this.props.onEvent) this.component.on(undefined, this.props.onEvent)
+    if (this.props.value) this.component.value(this.props.value)
   }
 
   componentDidUpdate(props) {
-    if (this.props.items) this.component.items(this.props.items)
     if (hx.defined(this.props.disabled)) this.component.disabled(this.props.disabled)
+    if (this.props.discreteValues) this.component.discreteValues(this.props.discreteValues)
+    if (this.props.value) this.component.value(this.props.value)
+    if (this.props.min) this.component.min(this.props.min)
+    if (this.props.max) this.component.max(this.props.max)
+    if (this.props.step) this.component.step(this.props.step)
+  }
+
+  render() {
+    return React.createElement('div', {className: 'hx-slider', ref: (d) => this.div = d})
+  }
+}
+
+/* TimeSlider */
+
+export class TimeSlider extends React.Component {
+  componentDidMount() {
+    this.component = new hx.TimeSlider(this.div, this.props)
+    if (this.props.onEvent) this.component.on(undefined, this.props.onEvent)
+    if (this.props.value) this.component.value(this.props.value)
+  }
+
+  componentDidUpdate(props) {
+    if (hx.defined(this.props.disabled)) this.component.disabled(this.props.disabled)
+    if (this.props.discreteValues) this.component.discreteValues(this.props.discreteValues)
+    if (this.props.value) this.component.value(this.props.value)
+    if (this.props.min) this.component.min(this.props.min)
+    if (this.props.max) this.component.max(this.props.max)
+    if (this.props.step) this.component.step(this.props.step)
   }
 
   render() {

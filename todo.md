@@ -26,8 +26,8 @@
  - [x] pivot-table
  - [x] tag-input
  - [x] autocomplete
- - [ ] slider
- - [ ] time-slider
+ - [x] slider
+ - [x] time-slider
  - [ ] card
  - [ ] crumbtrail
  - [ ] data-table
@@ -56,22 +56,22 @@
 - [x] tree
 - [x] label
 - [x] picker
-- [ ] input-group
-- [ ] progress-bar
-- [ ] collapsible
-- [ ] number-picker
+- [x] input-group
+- [x] progress-bar
+- [x] collapsible
+- [x] number-picker
 - [x] layout
-- [ ] button-group
-- [ ] date-picker
-- [ ] time-picker
-- [ ] date-time-picker
-- [ ] color-picker
-- [ ] toggle
-- [ ] pivot-table
-- [ ] tag-input
-- [ ] autocomplete
-- [ ] slider
-- [ ] time-slider
+- [x] button-group
+- [x] date-picker
+- [x] time-picker
+- [x] date-time-picker
+- [x] color-picker
+- [x] toggle
+- [x] pivot-table
+- [x] tag-input
+- [x] autocomplete
+- [x] slider
+- [x] time-slider
 - [ ] card
 - [ ] crumbtrail
 - [ ] data-table
@@ -112,8 +112,8 @@
 - [x] pivot-table
 - [x] tag-input
 - [x] autocomplete
-- [ ] slider
-- [ ] time-slider
+- [x] slider
+- [x] time-slider
 - [ ] card
 - [ ] crumbtrail
 - [ ] data-table
@@ -169,3 +169,6 @@
 - [ ] dropdown
 - [ ] plot
 - [ ] menu
+
+# Bugs to raise in hexagon
+ - DatePicker/TimePicker/DateTimePicker events are inconsistent
