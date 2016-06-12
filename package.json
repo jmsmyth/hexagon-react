@@ -4,12 +4,14 @@
   "description": "A React wrapper for HexagonJS",
   "main": "hexagon-react.js",
   "scripts": {
+    "clean": "rm -rf target",
     "build": "webpack --config webpack.config.js",
     "start": "webpack --config webpack.test.config.js --watch & browser-test-runner watch test.html",
     "test": "npm run build && webpack --config webpack.test.config.js && browser-test-runner run test.html",
     "run-test": "browser-test-runner run test.html",
-    "prep-site": "cp -r bower_components/hexagon-js/dist/hexagon-light target/hexagon-js && cp -r bower_components/font-awesome target/font-awesome && cp -r node_modules/react/dist target/react && cp -r node_modules/react-dom/dist target/react-dom",
-    "site": "quantum watch"
+    "site": "quantum watch",
+    "build-site": "quantum build",
+    "deploy-site": "bash deploy-site.sh"
   },
   "author": "James Smyth <jmsmyth@users.noreply.github.com>",
   "license": "MIT",

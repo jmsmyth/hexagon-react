@@ -34,8 +34,25 @@ function pipeline () {
 module.exports = {
   pipeline: pipeline,
   pages: 'docs/pages/**/*.um',
-  resources: 'docs/resources/**/*',
-  target: 'target',
-  htmlTransforms: htmlTransforms,
-  port: 5080
+  resources: [
+    'docs/resources/**/*',
+    {
+      files: 'bower_components/hexagon-js/dist/hexagon-light/**/*',
+      dest: 'libs/hexagon-js'
+    },
+    {
+      files: 'node_modules/react-dom/dist/**/*',
+      dest: 'libs/react-dom'
+    },
+    {
+      files: 'node_modules/react/dist/**/*',
+      dest: 'libs/react'
+    },
+    {
+      files: 'bower_components/font-awesome',
+      dest: 'libs/font-awesome'
+    }
+  ],
+  dest: 'target/site',
+  htmlTransforms: htmlTransforms
 }

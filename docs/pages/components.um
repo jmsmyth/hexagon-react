@@ -1,9 +1,9 @@
-@stylesheet /hexagon-js/hexagon.css
-@script /hexagon-js/hexagon.js
-@script /react/react.js
-@script /react-dom/react-dom.js
-@stylesheet /font-awesome/css/font-awesome.css
-@stylesheet /resources/site.css
+@stylesheet ../libs/hexagon-js/hexagon.css
+@script ../libs/hexagon-js/hexagon.js
+@script ../libs/react/react.js
+@script ../libs/react-dom/react-dom.js
+@stylesheet ../libs/font-awesome/css/font-awesome.css
+@stylesheet ../site.css
 
 @header
   @title Hexagon React
