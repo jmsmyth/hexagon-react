@@ -8,4 +8,8 @@ A React wrapper for [HexagonJS](https://www.hexagonjs.io/).
 
 ## To install:
 
+    npm install hexagon-react
+
+Or
+
     bower install hexagon-react

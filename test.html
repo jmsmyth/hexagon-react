@@ -44,7 +44,7 @@
     <script>mocha.setup('bdd')</script>
     <script src="/target/hexagon-react.test.js"></script>
     <script>
-      BrowserTestRunner.init()
+      BrowserTestRunner.init({host: 'localhost', port: 10001})
       mocha.run()
     </script>
   </body>
