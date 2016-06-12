@@ -28,9 +28,9 @@
  - [x] autocomplete
  - [x] slider
  - [x] time-slider
+ - [x] data-table
  - [ ] card
  - [ ] crumbtrail
- - [ ] data-table
  - [ ] error-pages
  - [ ] inline-editable
  - [ ] inline-picker
@@ -72,9 +72,9 @@
 - [x] autocomplete
 - [x] slider
 - [x] time-slider
+- [x] data-table
 - [ ] card
 - [ ] crumbtrail
-- [ ] data-table
 - [ ] error-pages
 - [ ] inline-editable
 - [ ] inline-picker
@@ -114,9 +114,9 @@
 - [x] autocomplete
 - [x] slider
 - [x] time-slider
+- [x] data-table
 - [ ] card
 - [ ] crumbtrail
-- [ ] data-table
 - [ ] error-pages
 - [ ] inline-editable
 - [ ] inline-picker
@@ -128,6 +128,10 @@
 - [ ] dropdown
 - [ ] plot
 - [ ] menu
+
+# Docs
+
+- [ ] Example setup with webpack
 
 ### Docs (api)
 - [ ] spinner

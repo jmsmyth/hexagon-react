@@ -2,7 +2,7 @@ var babel = require('babel-core')
 var stream = require('stream')
 var browserify = require('browserify')
 
-exports.example = function (entity, page, transform) {
+exports.jsx = function (entity, page, transform) {
   const id = page.nextId()
 
   const codeblock = entity.clone()

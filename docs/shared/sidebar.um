@@ -1,0 +1,5 @@
+@sidebar
+  @navigationMenu
+    @section
+      @page /: Introduction
+      @page /components/: Components

@@ -433,3 +433,60 @@ export class TimeSlider extends React.Component {
     return React.createElement('div', {className: 'hx-slider', ref: (d) => this.div = d})
   }
 }
+
+/* DataTable */
+
+export class DataTable extends React.Component {
+  componentDidMount() {
+    this.component = new hx.DataTable(this.div, this.props)
+    if (this.props.onEvent) this.component.on(undefined, this.props.onEvent)
+    this.component.render()
+  }
+
+  componentDidUpdate(props) {
+    if (this.props.collapsibleRenderer) this.component.collapsibleRenderer(this.props.collapsibleRenderer)
+    if (hx.isBoolean(this.props.compact)) this.component.compact(this.props.compact)
+    if (this.props.displayMode) this.component.displayMode(this.props.displayMode)
+    if (this.props.feed) this.component.feed(this.props.feed)
+    if (this.props.filter) this.component.filter(this.props.filter)
+    if (hx.isBoolean(this.props.filterEnabled)) this.component.filterEnabled(this.props.filterEnabled)
+    if (this.props.noDataMessage) this.component.noDataMessage(this.props.noDataMessage)
+    if (this.props.pageSize) this.component.pageSize(this.props.pageSize)
+    if (this.props.pageSizeOptions) this.component.pageSizeOptions(this.props.pageSizeOptions)
+    if (hx.isBoolean(this.props.retainHorizontalScrollOnRender)) this.component.retainHorizontalScrollOnRender(this.props.retainHorizontalScrollOnRender)
+    if (hx.isBoolean(this.props.retainVerticalScrollOnRender)) this.component.retainVerticalScrollOnRender(this.props.retainVerticalScrollOnRender)
+    if (this.props.rowCollapsibleLookup) this.component.rowCollapsibleLookup(this.props.rowCollapsibleLookup)
+    if (this.props.rowEnabledLookup) this.component.rowEnabledLookup(this.props.rowEnabledLookup)
+    if (this.props.rowSelectableLookup) this.component.rowSelectableLookup(this.props.rowSelectableLookup)
+    if (hx.isBoolean(this.props.selectEnabled)) this.component.selectEnabled(this.props.selectEnabled)
+    if (hx.isBoolean(this.props.singleSelection)) this.component.singleSelection(this.props.singleSelection)
+    if (this.props.sort) this.component.sort(this.props.sort)
+
+    // global versions of the per-column properties
+    if (hx.isBoolean(this.props.sortEnabled)) this.component.sortEnabled(!!this.props.sortEnabled)
+    if (hx.isFunction(this.props.cellRenderer)) this.component.cellRenderer(this.props.cellRenderer)
+    if (hx.isFunction(this.props.headerCellRenderer)) this.component.headerCellRenderer(this.props.headerCellRenderer)
+    if (hx.isBoolean(this.props.allowHeaderWrap)) this.component.allowHeaderWrap(this.props.allowHeaderWrap)
+
+    // per-column properties
+    if (this.props.columns && hx.isObject(this.props.columns)) {
+      Object.keys(this.props.columns).forEach(k => {
+        const columnOptions = this.props.columns[k]
+
+        if (columnOptions.sortEnabled !== undefined) this.component.sortEnabled(k, columnOptions.sortEnabled)
+        if (columnOptions.maxWidth) this.component.maxWidth(k, columnOptions.maxWidth)
+        if (columnOptions.cellRenderer) this.component.cellRenderer(k, columnOptions.cellRenderer)
+        if (columnOptions.headerCellRenderer) this.component.headerCellRenderer(k, columnOptions.headerCellRenderer)
+        if (columnOptions.allowHeaderWrap !== undefined) {
+          this.component.allowHeaderWrap(k, columnOptions.allowHeaderWrap)
+        }
+      })
+    }
+
+    this.component.render()
+  }
+
+  render() {
+    return React.createElement('div', {className: 'hx-data-table', ref: (d) => this.div = d})
+  }
+}

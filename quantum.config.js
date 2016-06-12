@@ -7,12 +7,14 @@ var template = require('quantum-template')
 var changelog = require('quantum-changelog')
 var docs = require('quantum-docs')
 var site = require('./docs/transforms')
+var codeHighlight = require('quantum-code-highlight')
 
 var htmlTransforms = {
   html: html.transforms,
   api: api(),
   changelog: changelog.transforms(),
   docs: docs(),
+  codeHighlight: codeHighlight(),
   site: site
 }
 
@@ -32,8 +34,7 @@ function pipeline () {
 module.exports = {
   pipeline: pipeline,
   pages: 'docs/pages/**/*.um',
-  resourceDir: 'docs/resources',
-  base: 'docs/pages',
+  resources: 'docs/resources/**/*',
   target: 'target',
   htmlTransforms: htmlTransforms,
   port: 5080

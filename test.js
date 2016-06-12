@@ -8,7 +8,7 @@ import { ProgressBar, Collapsible, NumberPicker } from './hexagon-react'
 import { ButtonGroup, DatePicker, TimePicker } from './hexagon-react'
 import { DateTimePicker, ColorPicker, Toggle } from './hexagon-react'
 import { PivotTable, TagInput, AutoComplete, Slider } from './hexagon-react'
-import { TimeSlider } from './hexagon-react'
+import { TimeSlider, DataTable } from './hexagon-react'
 
 function createComponent (component) {
   const selection = hx.detached('div')
@@ -1192,6 +1192,322 @@ describe('hexagon-react', function () {
         changeValue.should.eql({value: date, cause: 'api'})
       })
     })
+  })
+
+  describe('<DataTable/>', () => {
+    it('should be a div with the hx-data-table class', () => {
+      return createComponent(React.createElement(DataTable)).then((selection) => {
+        selection.select('.hx-data-table').size().should.equal(1)
+      })
+    })
+
+    it('should initialise the component', () => {
+      return createComponent(React.createElement(DataTable)).then((selection) => {
+        selection.select('.hx-data-table').component().should.be.an.instanceof(hx.DataTable)
+      })
+    })
+
+    it('should update the collapsibleRenderer property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {collapsibleRenderer: function f1 () {}},
+        props: {collapsibleRenderer: function f2 () {}},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().collapsibleRenderer().should.eql(props.collapsibleRenderer)
+        }
+      })
+    })
+
+    it('should update the compact property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {compact: false},
+        props: {compact: true},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().compact().should.eql(props.compact)
+        }
+      })
+    })
+
+    it('should update the displayMode property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {displayMode: 'paginate'},
+        props: {displayMode: 'all'},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().displayMode().should.eql(props.displayMode)
+        }
+      })
+    })
+
+    it('should update the feed property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {feed: {}},
+        props: {feed: {}},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().feed().should.eql(props.feed)
+        }
+      })
+    })
+
+    it('should update the filter property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {filter: {}},
+        props: {filter: {}},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().filter().should.eql(props.filter)
+        }
+      })
+    })
+
+    it('should update the noDataMessage property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {noDataMessage: 'message1'},
+        props: {noDataMessage: 'message 2'},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().noDataMessage().should.eql(props.noDataMessage)
+        }
+      })
+    })
+
+    it('should update the pageSize property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {pageSize: 10},
+        props: {pageSize: 20},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().pageSize().should.eql(props.pageSize)
+        }
+      })
+    })
+
+    it('should update the pageSizeOptions property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {pageSizeOptions: {}},
+        props: {pageSizeOptions: {}},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().pageSizeOptions().should.eql(props.pageSizeOptions)
+        }
+      })
+    })
+
+    it('should update the retainHorizontalScrollOnRender property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {retainHorizontalScrollOnRender: false},
+        props: {retainHorizontalScrollOnRender: true},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().retainHorizontalScrollOnRender().should.eql(props.retainHorizontalScrollOnRender)
+        }
+      })
+    })
+
+    it('should update the retainVerticalScrollOnRender property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {retainVerticalScrollOnRender: false},
+        props: {retainVerticalScrollOnRender: true},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().retainVerticalScrollOnRender().should.eql(props.retainVerticalScrollOnRender)
+        }
+      })
+    })
+
+    it('should update the rowCollapsibleLookup property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {rowCollapsibleLookup: function f1 () {}},
+        props: {rowCollapsibleLookup: function f2 () {}},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().rowCollapsibleLookup().should.eql(props.rowCollapsibleLookup)
+        }
+      })
+    })
+
+    it('should update the rowEnabledLookup property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {rowEnabledLookup: function f1 () {}},
+        props: {rowEnabledLookup: function f2 () {}},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().rowEnabledLookup().should.eql(props.rowEnabledLookup)
+        }
+      })
+    })
+
+    it('should update the rowSelectableLookup property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {rowSelectableLookup: function f1 () {}},
+        props: {rowSelectableLookup: function f2 () {}},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().rowSelectableLookup().should.eql(props.rowSelectableLookup)
+        }
+      })
+    })
+
+    it('should update the selectEnabled property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {selectEnabled: false},
+        props: {selectEnabled: true},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().selectEnabled().should.eql(props.selectEnabled)
+        }
+      })
+    })
+
+    it('should update the singleSelection property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {singleSelection: false},
+        props: {singleSelection: true},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().singleSelection().should.eql(props.singleSelection)
+        }
+      })
+    })
+
+    it('should update the sort property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {sort: {}},
+        props: {sort: {}},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().sort().should.eql(props.sort)
+        }
+      })
+    })
+
+    it('should update the allowHeaderWrap property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {allowHeaderWrap: false},
+        props: {allowHeaderWrap: true},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().allowHeaderWrap().should.eql(props.allowHeaderWrap)
+        }
+      })
+    })
+
+    it('should update the allowHeaderWrap property (per column) when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: { columns: { column1: { allowHeaderWrap: true}}},
+        props: {columns: { column1: { allowHeaderWrap: false}}},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().allowHeaderWrap('column1').should.eql(props.columns.column1.allowHeaderWrap)
+        }
+      })
+    })
+
+    it('should update the cellRenderer property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {cellRenderer: function f1 () {}},
+        props: {cellRenderer: function f2 () {}},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().cellRenderer().should.eql(props.cellRenderer)
+        }
+      })
+    })
+
+    it('should update the cellRenderer property (per column) when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: { columns: { column1: { cellRenderer: function f1 () {}}}},
+        props: {columns: { column1: { cellRenderer: function f2 () {}}}},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().cellRenderer('column1').should.eql(props.columns.column1.cellRenderer)
+        }
+      })
+    })
+
+    it('should update the headerCellRenderer property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {headerCellRenderer: function f1 () {}},
+        props: {headerCellRenderer: function f2 () {}},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().headerCellRenderer().should.eql(props.headerCellRenderer)
+        }
+      })
+    })
+
+    it('should update the headerCellRenderer property (per column) when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: { columns: { column1: { headerCellRenderer: function f1 () {}}}},
+        props: {columns: { column1: { headerCellRenderer: function f2 () {}}}},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().headerCellRenderer('column1').should.eql(props.columns.column1.headerCellRenderer)
+        }
+      })
+    })
+
+    it('should update the maxWidth property (per column) when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {columns: {column1: { maxWidth: 10}}},
+        props: {columns: {column1: { maxWidth: 20}}},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().maxWidth('column1').should.eql(props.columns.column1.maxWidth)
+        }
+      })
+    })
+
+    it('should update the filterEnabled property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {filterEnabled: false},
+        props: {filterEnabled: true},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().filterEnabled().should.eql(props.filterEnabled)
+        }
+      })
+    })
+
+    it('should update the sortEnabled property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {sortEnabled: false},
+        props: {sortEnabled: true},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().sortEnabled().should.eql(props.sortEnabled)
+        }
+      })
+    })
+
+    it('should update the sortEnabled (per column) property when the props change', () => {
+      return testProp({
+        component: DataTable,
+        initialProps: {columns: {column1: { sortEnabled: true}}},
+        props: {columns: {column1: { sortEnabled: false}}},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().sortEnabled('column1').should.eql(props.columns.column1.sortEnabled)
+        }
+      })
+    })
+
+    it('should propagate events upwards', () => {
+      let changeValue = undefined
+      const onEvent = (name, value) => changeValue = value
+      return testProp({
+        component: DataTable,
+        initialProps: {onEvent, compact: false},
+        props: {onEvent, compact: true},
+        test: (selection, props) => {
+          selection.select('.hx-data-table').component().compact().should.eql(props.compact)
+        }
+      }).then(() => {
+        changeValue.should.eql({value: true, cause: 'api'})
+      })
+    })
+
   })
 
 })
