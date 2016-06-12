@@ -1,9 +1,17 @@
 language: node_js
 node_js:
-  - "4"
+- '4'
 before_script:
-  - npm install -g bower
-  - bower install
-
+- npm install -g bower
+- bower install
 after_success:
-  - cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+- cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+
+deploy:
+  provider: npm
+  email: jmsmyth@users.noreply.github.com
+  api_key:
+    secure: e9PlsJAxabN0ikS7wwDXC/YdP4tZQDVyJciSb0fhDG0NpnlBhjNvd1TmmMEby3oc4KfmJzYk5svp8bL4+qFyiYGVgOdc+0ypykOlBULHsRy6cbn03RRoXeZNpL30oBIFNeJ79RM2/DU7lfbJANjJJdEUCpXPwgUe84trMLvaOiWUX3kZn3MdO49A0kUqtU8R9uz3bB7OuU5q5R57deU9tSf9DCfZN3Pqt8HlAXLBdpKiOlw1FIjrqXXZGlC0C9MNcexAvOxnvE4qQC/ZxAgCuBg7rwpF/SZnIjd6dJ7dSlpaHwnIO/PrO5+9VSVUMOUsPZJMGveI25f8pjeSPUU7V0VKTfWLj9b1Zn8bND7RJVuvNpcOQTKELjyT/vqMy0uuXC6KWUGNh5UcwzCyiAr0mw6bESm9m7/NHoAyL9JiEvX1NkVs3eE+Yu8PLlmMnynmDlFW9FHKsA8SLoJQPFNjlcoXLpC8KrXUjK9pxq8rvVGWExqUc/6ZYdnIzZcbSZCQIEELRKmsr/WRgslfo9zeyhxVsQ9IIQFtyGBOqO+NVHwjD2yYJtIqdx0wwOML+kU4b89xY431xCwBKS/FuOn39K6Fm4dgNxa6xCxX9TVCq/1R7ySK6x+BW4HgGVlR1QwsDMJtBWqPAu9DF5RCUy3QPs+a+fND4JYnTqu66AKY2/8=
+  on:
+    tags: true
+    repo: jmsmyth/hexagon-react
