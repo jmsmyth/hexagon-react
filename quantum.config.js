@@ -21,7 +21,11 @@ var htmlTransforms = {
 function pipeline () {
   return function (obj) {
     return Promise.resolve(obj)
-      .then(template())
+      .then(template({
+        variables: {
+          baseurl: process.env.GITHUB_PAGES ? '/hexagon-react' : ''
+        }
+      }))
       .then(changelog())
       .then(version())
       .map(docs.populateTableOfContents())

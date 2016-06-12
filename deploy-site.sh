@@ -8,6 +8,7 @@ pushd target/site
 git checkout gh-pages
 git rm -rf *
 popd
+export GITHUB_PAGES="true"
 npm run build-site
 pushd target/site
 git add .
