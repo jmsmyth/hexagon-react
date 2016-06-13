@@ -208,7 +208,7 @@
         </Group>
       </div>
 
-    @@style
+    @@css
       /* adds some styling to make the sections of the layout visible for this example */
       .docs-layout-demo .hx-section {
         background: #d6d6d6;
@@ -216,7 +216,7 @@
         min-height: 100px;
       }
 
-    @codeblock css
+    @@codeblock css
       /* adds some styling to make the sections of the layout visible for this example */
       .docs-layout-demo .hx-section {
         background: #d6d6d6;

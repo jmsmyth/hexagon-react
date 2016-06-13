@@ -10,23 +10,17 @@ function contextClass (context) {
 
 /* Layout */
 
-export class Content extends React.Component {
-  render() {
-    return React.createElement('div', {className: 'hx-content'}, this.props.children)
-  }
+export function Content (props) {
+  return React.createElement('div', {className: 'hx-content'}, props.children)
 }
 
-export class Group extends React.Component {
-  render() {
-    const direction = this.props.direction === 'vertical' ? 'hx-vertical' : 'hx-horizontal'
-    return React.createElement('div', {className: classes('hx-group', direction)}, this.props.children)
-  }
+export function Group (props) {
+  const direction = props.direction === 'vertical' ? 'hx-vertical' : 'hx-horizontal'
+  return React.createElement('div', {className: classes('hx-group', direction)}, props.children)
 }
 
-export class Section extends React.Component {
-  render() {
-    return React.createElement('div', {className: 'hx-section'}, this.props.children)
-  }
+export function Section (props) {
+  return React.createElement('div', {className: 'hx-section'}, props.children)
 }
 
 /* Titlebar */
@@ -56,67 +50,47 @@ export class TitleBar extends React.Component {
   }
 }
 
-export class TitleBarLink extends React.Component {
-  render() {
-    return React.createElement('a', {href: this.props.href, className: 'hx-titlebar-link'}, this.props.children)
-  }
+export function TitleBarLink (props) {
+  return React.createElement('a', {href: props.href, className: 'hx-titlebar-link'}, props.children)
 }
 
-export class TitleBarIcon extends React.Component {
-  render() {
-    return React.createElement('a', {className: 'hx-titlebar-menu-icon'},
-      React.createElement('i', {className: this.props.iconClass}),
-      React.createElement('span', {className: 'hx-titlebar-menu-text'}, this.props.children))
-  }
+export function TitleBarIcon (props) {
+  return React.createElement('a', {className: 'hx-titlebar-menu-icon'},
+    React.createElement('i', {className: props.iconClass}),
+    React.createElement('span', {className: 'hx-titlebar-menu-text'}, props.children))
 }
 
 /* Buttons */
 
-export class Button extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    return React.createElement('button', hx.merge({className: classes('hx-btn', contextClass(this.props.context))}, this.props), this.props.children)
-  }
+export function Button (props) {
+  return React.createElement('button', hx.merge({className: classes('hx-btn', contextClass(props.context))}, props), props.children)
 }
 
 /* Loading spinners */
 
-export class Spinner extends React.Component {
-  render() {
-    return React.createElement('span', {className: 'hx-spinner'})
-  }
+export function Spinner (props) {
+  return React.createElement('span', {className: 'hx-spinner'})
 }
 
-export class SpinnerWide extends React.Component {
-  render() {
-    return React.createElement('div', {className: 'hx-spinner-wide'})
-  }
+export function SpinnerWide (props) {
+  return React.createElement('div', {className: 'hx-spinner-wide'})
 }
 
 /* Labels */
 
-export class Label extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    return React.createElement('span',
-      {className: classes('hx-label', contextClass(this.props.context))},
-      this.props.children)
-  }
+export function Label (props) {
+  return React.createElement('span',
+    {className: classes('hx-label', contextClass(props.context))},
+    props.children)
 }
 
 /* Notices */
 
-export class Notice extends React.Component {
-  render() {
-    return React.createElement('div',
-      {className: classes('hx-notice', contextClass(this.props.context))},
-      React.createElement('div', {className: 'hx-notice-header'}, this.props.title),
-      React.createElement('div', {className: 'hx-notice-body'}, this.props.children))
-  }
+export function Notice (props) {
+  return React.createElement('div',
+    {className: classes('hx-notice', contextClass(props.context))},
+    React.createElement('div', {className: 'hx-notice-header'}, props.title),
+    React.createElement('div', {className: 'hx-notice-body'}, props.children))
 }
 
 /* Tree */
@@ -158,10 +132,8 @@ export class Picker extends React.Component {
 
 /* Input Groups */
 
-export class InputGroup extends React.Component {
-  render() {
-    return React.createElement('span', {className: 'hx-input-group'})
-  }
+export function InputGroup (props) {
+  return React.createElement('span', {className: 'hx-input-group'}, props.children)
 }
 
 /* Progress Bars */
@@ -384,7 +356,7 @@ export class AutoComplete extends React.Component {
   }
 
   render() {
-    return React.createElement('div', {className: 'hx-auto-complete', ref: (d) => this.div = d})
+    return React.createElement('input', {className: 'hx-auto-complete', ref: (d) => this.div = d})
   }
 }
 
