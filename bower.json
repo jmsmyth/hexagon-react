@@ -12,10 +12,5 @@
     "bower_components",
     "test",
     "tests"
-  ],
-  "devDependencies": {
-    "hexagon-js": "~1.2.1",
-    "font-awesome": "~4.5.0",
-    "es6-promise": "~3.2.1"
-  }
+  ]
 }

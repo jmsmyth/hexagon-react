@@ -35,28 +35,38 @@ function pipeline () {
   }
 }
 
+const resources = [
+  'docs/resources/**/*',
+  {
+    files: [
+      'node_modules/hexagon-js/dist/hexagon-light/hexagon.js',
+      'node_modules/hexagon-js/dist/hexagon-light/hexagon.css'
+    ],
+    base: 'node_modules/hexagon-js/dist/hexagon-light',
+    dest: 'libs/hexagon-js'
+  },
+  {
+    files: 'node_modules/react-dom/dist/**/*',
+    dest: 'libs/react-dom'
+  },
+  {
+    files: 'node_modules/react/dist/**/*',
+    dest: 'libs/react'
+  },
+  {
+    files: [
+      'node_modules/font-awesome/css/**/*',
+      'node_modules/font-awesome/fonts/**/*'
+    ],
+    base: 'node_modules/font-awesome',
+    dest: 'libs/font-awesome'
+  }
+]
+
 module.exports = {
   pipeline: pipeline,
   pages: 'docs/pages/**/*.um',
-  resources: [
-    'docs/resources/**/*',
-    {
-      files: 'bower_components/hexagon-js/dist/hexagon-light/**/*',
-      dest: 'libs/hexagon-js'
-    },
-    {
-      files: 'node_modules/react-dom/dist/**/*',
-      dest: 'libs/react-dom'
-    },
-    {
-      files: 'node_modules/react/dist/**/*',
-      dest: 'libs/react'
-    },
-    {
-      files: 'bower_components/font-awesome',
-      dest: 'libs/font-awesome'
-    }
-  ],
+  resources: resources,
   dest: 'target/site',
   htmlTransforms: htmlTransforms
 }

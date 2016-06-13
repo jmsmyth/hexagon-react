@@ -30,15 +30,15 @@
 
   @topic Installation
 
+    @section Install with npm (recommended)
+
+      @codeblock bash
+        npm install --save hexagon-react
+
     @section Install with bower
 
       @codeblock bash
         bower install --save hexagon-react
-
-    @section Install with npm
-
-      @codeblock bash
-        npm install --save hexagon-react
 
 
   @topic Quick Start
@@ -67,7 +67,6 @@
       @codeblock bash
         # webpack dependencies needed
         npm install --save-dev webpack
-        npm install --save-dev babel-core
         npm install --save-dev babel-loader
         npm install --save-dev babel-preset-es2015
         npm install --save-dev babel-preset-react
