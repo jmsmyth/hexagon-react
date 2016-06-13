@@ -40,7 +40,8 @@ const resources = [
   {
     files: [
       'node_modules/hexagon-js/dist/hexagon-light/hexagon.js',
-      'node_modules/hexagon-js/dist/hexagon-light/hexagon.css'
+      'node_modules/hexagon-js/dist/hexagon-light/hexagon.css',
+      'node_modules/hexagon-js/dist/hexagon-light/assets/**/*'
     ],
     base: 'node_modules/hexagon-js/dist/hexagon-light',
     dest: 'libs/hexagon-js'
