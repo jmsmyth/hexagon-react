@@ -25,7 +25,8 @@
     @hyperlink(https://www.hexagonjs.io)[HexagonJS] which exposes most of the
     components as @bold[React components].
 
-    The library is only available an @bold[es6 module].
+    The library is only available an @bold[es6 module]. This means that you will
+    have to use something like webpack to bundle it into your application.
 
   @topic Installation
 
@@ -45,13 +46,40 @@
     to @bold[transpile] jsx+es6 to es5, and creating an example page using some of
     the components.
 
-    @section Install dependencies
+    @section Create a project directory
+
+      To start, create a new folder for the project code to live in. For this quick
+      start guide, we are going to create one called @code[hexagon-react-demo]:
 
       @codeblock bash
-        bower install --save react
-        bower install --save react-dom
-        bower install --save hexagon-js
-        bower install --save hexagon-react
+        mkdir hexagon-react-demo
+        cd hexagon-react-demo
+
+    @section Initialise a new npm project and install dependencies
+
+      Initialise a new npm project with
+
+      @codeblock bash
+        npm init
+
+      and answer all the quesions it asks - the defaults should be fine
+
+      @codeblock bash
+        # webpack dependencies needed
+        npm install --save-dev webpack
+        npm install --save-dev babel-core
+        npm install --save-dev babel-loader
+        npm install --save-dev babel-preset-es2015
+        npm install --save-dev babel-preset-react
+
+        # hexagon-react dependencies needed
+        npm install --save-dev react
+        npm install --save-dev react-dom
+        npm install --save-dev hexagon-js
+        npm install --save-dev hexagon-react
+
+        # live-reload web server
+        npm install --save-dev live-reload
 
       @notice Note
         hexagon-react requires the @bold[React] and @bold[hx] globals to be available.
@@ -59,46 +87,124 @@
 
     @section Set up webpack to build your jsx
 
-      @notice TODO
-        This section needs doing, obviously
+      We have already installed all the dependencies we need, so all that is left
+      now is to create the webpack config file.
+
+      Create a file called @bold[webpack.config.js] and paste the following config
+      into it. This will set up webpack to transpile ES6 and jsx to ES5.
+
+      @codeblock js
+        module.exports = {
+          context: __dirname,
+          entry: './index.jsx',
+          output: {
+            path: 'target',
+            filename: 'index.js'
+          },
+          module: {
+            loaders: [
+              {
+                loader: 'babel-loader',
+                query: {
+                  presets: ['es2015', 'react']
+                }
+              }
+            ]
+          },
+        }
+
 
     @section Create a page using react components
       Create a file called index.jsx and copy this into it:
 
       @codeblock jsx
-        import { TitleBar } from 'hexagon-react'
+        import { TitleBar, Content, NumberPicker, DatePicker, TagInput, Slider } from 'hexagon-react'
 
         const page = <div>
-          <TitleBar title="Hexagon React demo"></TitleBar>
-          <Content>
-            <h1>Number Picker</h1>
-            <NumberPicker></NumberPicker>
-            <h1>Date Picker</h1>
-            <DatePicker></DatePicker>
-            <h1>Tag Input</h1>
-            <TagInput></TagInput>
-            <h1>Slider</h1>
-            <Slider></Slider>
-          </Content>
+        <TitleBar title="Hexagon React demo"></TitleBar>
+        <Content>
+          <h1>Number Picker</h1>
+          <NumberPicker></NumberPicker>
+          <h1>Date Picker</h1>
+          <DatePicker></DatePicker>
+          <h1>Tag Input</h1>
+          <TagInput></TagInput>
+          <h1>Slider</h1>
+          <Slider></Slider>
+        </Content>
         </div>
 
-        ReactDom.render(page, hx.select('#mount').node())
+        ReactDOM.render(page, hx.select('#mount').node())
+
 
     @section Create an example page
-      Create a file called index.html and copy the following into it.:
+
+      Create a file called index.html and copy the following into it:
 
       @codeblock html
         <!DOCTYPE html>
         <html>
           <head>
-            <link rel="stylesheet" href="/bower_components/hexagon-js/dist/hexagon-light/hexagon.css">
+            <link rel="stylesheet" href="/node_modules/hexagon-js/dist/hexagon-light/hexagon.css">
           </head>
           <body>
             <div id="mount"></div>
-            <script src="/bower_components/react/dist/react.js"/>
-            <script src="/bower_components/react-dom/dist/react-dom.js"/>
-            <script src="/bower_components/hexagon-js/dist/hexagon-light/hexagon.js"/>
-            <script src="/bower_components/hexagon-react/dist/hexagon-react.js"/>
-            <script src="/index.js"/>
+            <script src="/node_modules/react/dist/react.js"></script>
+            <script src="/node_modules/react-dom/dist/react-dom.js"></script>
+            <script src="/node_modules/hexagon-js/dist/hexagon-light/hexagon.js"></script>
+            <script src="/target/index.js"/>
           </body>
         </html>
+
+    @section Build the site
+
+      Now we should have everything we need to build the site. We can add an entry
+      into package.json for building the site:
+
+      @codeblock json
+        "scripts": {
+          "build": "webpack",
+          "watch": "webpack -w",
+          "server": "live-server"
+        }
+
+      So you should end up with something like:
+
+      @codeblock json
+        {
+          "name": "hexagon-react-demo",
+          "version": "1.0.0",
+          "description": "",
+          "main": "index.js",
+          "scripts": {
+            "test": "echo \"Error: no test specified\" && exit 1"
+          },
+          "author": "",
+          "license": "ISC",
+          "devDependencies": {
+            "babel-core": "^6.9.1",
+            "babel-loader": "^6.2.4",
+            "babel-preset-es2015": "^6.9.0",
+            "babel-preset-react": "^6.5.0",
+            "hexagon-js": "^1.3.2",
+            "hexagon-react": "^0.1.1",
+            "react": "^15.1.0",
+            "react-dom": "^15.1.0",
+            "webpack": "^1.13.1"
+          },
+          "scripts": {
+            "build": "webpack",
+            "watch": "webpack -w",
+            "server": "live-server"
+          }
+        }
+
+      Now open up two terminals. In one, run:
+
+      @codeblock bash
+        npm run watch
+
+      And the other, run
+
+      @codeblock bash
+        npm run server
