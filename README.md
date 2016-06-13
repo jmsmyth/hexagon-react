@@ -13,3 +13,9 @@ A React wrapper for [HexagonJS](https://www.hexagonjs.io/).
 Or
 
     bower install hexagon-react
+
+## Documentation
+
+Head here for documentation with example usage:
+
+http://jmsmyth.github.io/hexagon-react/
