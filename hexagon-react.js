@@ -91,7 +91,7 @@ export class Spinner extends React.Component {
 
 export class SpinnerWide extends React.Component {
   render() {
-    return React.createElement('span', {className: 'hx-spinner-wide'})
+    return React.createElement('div', {className: 'hx-spinner-wide'})
   }
 }
 
