@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" type="text/css" href="/hexagon-react/libs/hexagon-js/hexagon.css"></link><link rel="stylesheet" type="text/css" href="/hexagon-react/libs/font-awesome/css/font-awesome.css"></link><link rel="stylesheet" type="text/css" href="/hexagon-react/site.css"></link><title>Introduction</title><style>
+.qm-html-paragraph {
+  margin: 1em 0;
+}
+
+.qm-html-paragraph:first-child {
+  margin-top: 0;
+}
+
+.qm-html-paragraph:last-child {
+  margin-bottom: 0;
+}</style><style>
 body {
   display: flex;
   flex-direction: column;
@@ -591,18 +602,7 @@ a.qm-docs-navication-menu-page {
     position: initial;
   }
 }
-</style><style>
-.qm-html-paragraph {
-  margin: 1em 0;
-}
-
-.qm-html-paragraph:first-child {
-  margin-top: 0;
-}
-
-.qm-html-paragraph:last-child {
-  margin-bottom: 0;
-}</style><style>.quantum-code-highlight-codeblock {
+</style><style>.quantum-code-highlight-codeblock {
   padding: 1em;
   margin: 0.5em 0;
   overflow: auto;
@@ -709,39 +709,94 @@ a.qm-docs-navication-menu-page {
 .hljs-emphasis {
   font-style: italic;
 }
-</style></head><body class=" qm-docs-sidebar-page"><div class="qm-docs-header"><div class="qm-docs-centered"><div class="qm-docs-header-wrapper"><div class="qm-docs-header-title">Hexagon React</div></div></div></div><div class="qm-docs-top-section"><div class="qm-docs-top-section-centered qm-docs-top-section-banner"><div class="qm-docs-top-section-title">Introduction</div><div class="qm-docs-top-section-description"><div class="qm-html-paragraph">What hexagon-react is, how to install it, and how to set it up. </div></div></div></div><div class="qm-docs-content-section-container"><div class="qm-docs-sidebar qm-docs-sidebar-left"><div class="qm-docs-navication-menu"><div class="qm-docs-navication-menu-section"><div class="qm-docs-navication-menu-section-title"></div><div class="qm-docs-navication-menu-section-body"><a class="qm-docs-navication-menu-page" href="/hexagon-react/">Introduction</a><a class="qm-docs-navication-menu-page" href="/hexagon-react/components/">Components</a></div></div></div></div><div class="qm-docs-content-section"><div class="qm-docs-centered"><div class="qm-docs-notice "><div class="qm-docs-notice-header">Under construction</div><div class="qm-docs-notice-body"><div class="qm-html-paragraph">This documentation is under construction </div></div></div><div class="qm-docs-topic"><div class="qm-docs-anchor" id="about"><div class="qm-docs-topic-header">About<a class="qm-docs-anchor-icon" href="#about"></a></div></div><div class="qm-docs-topic-body"><div class="qm-html-paragraph">This is the documentation for  <b>hexagon-react</b> , a wrapper library for <a href="https://www.hexagonjs.io">HexagonJS</a>  which exposes most of the components as  <b>React components</b> . </div><div class="qm-html-paragraph">The library is only available an  <b>es6 module</b> . </div></div></div><div class="qm-docs-topic"><div class="qm-docs-anchor" id="installation"><div class="qm-docs-topic-header">Installation<a class="qm-docs-anchor-icon" href="#installation"></a></div></div><div class="qm-docs-topic-body"><div class="qm-html-paragraph"><div class="qm-docs-section"><div class="qm-docs-anchor" id="install-with-bower"><div class="qm-docs-section-header">Install with bower<a class="qm-docs-anchor-icon" href="#install-with-bower"></a></div></div><div class="qm-docs-section-body"><div class="qm-html-paragraph"><div class="quantum-code-highlight-codeblock language-bash"><pre>bower install --save hexagon-react</pre></div> </div></div></div> </div><div class="qm-html-paragraph"><div class="qm-docs-section"><div class="qm-docs-anchor" id="install-with-npm"><div class="qm-docs-section-header">Install with npm<a class="qm-docs-anchor-icon" href="#install-with-npm"></a></div></div><div class="qm-docs-section-body"><div class="qm-html-paragraph"><div class="quantum-code-highlight-codeblock language-bash"><pre>npm install --save hexagon-react</pre></div> </div></div></div> </div></div></div><div class="qm-docs-topic"><div class="qm-docs-anchor" id="quick-start"><div class="qm-docs-topic-header">Quick Start<a class="qm-docs-anchor-icon" href="#quick-start"></a></div></div><div class="qm-docs-topic-body"><div class="qm-html-paragraph">This section will go through installing all the dependencies, setting up webpack to  <b>transpile</b>  jsx+es6 to es5, and creating an example page using some of the components. </div><div class="qm-html-paragraph"><div class="qm-docs-section"><div class="qm-docs-anchor" id="install-dependencies"><div class="qm-docs-section-header">Install dependencies<a class="qm-docs-anchor-icon" href="#install-dependencies"></a></div></div><div class="qm-docs-section-body"><div class="qm-html-paragraph"><div class="quantum-code-highlight-codeblock language-bash"><pre>bower install --save react
-bower install --save react-dom
-bower install --save hexagon-js
-bower install --save hexagon-react</pre></div> </div><div class="qm-html-paragraph"><div class="qm-docs-notice "><div class="qm-docs-notice-header">Note</div><div class="qm-docs-notice-body"><div class="qm-html-paragraph">hexagon-react requires the  <b>React</b>  and  <b>hx</b>  globals to be available. So we install them here ready to include on the page </div></div></div> </div></div></div> </div><div class="qm-html-paragraph"><div class="qm-docs-section"><div class="qm-docs-anchor" id="set-up-webpack-to-build-your-jsx"><div class="qm-docs-section-header">Set up webpack to build your jsx<a class="qm-docs-anchor-icon" href="#set-up-webpack-to-build-your-jsx"></a></div></div><div class="qm-docs-section-body"><div class="qm-html-paragraph"><div class="qm-docs-notice "><div class="qm-docs-notice-header">TODO</div><div class="qm-docs-notice-body"><div class="qm-html-paragraph">This section needs doing, obviously </div></div></div> </div></div></div> </div><div class="qm-html-paragraph"><div class="qm-docs-section"><div class="qm-docs-anchor" id="create-a-page-using-react-components"><div class="qm-docs-section-header">Create a page using react components<a class="qm-docs-anchor-icon" href="#create-a-page-using-react-components"></a></div></div><div class="qm-docs-section-body"><div class="qm-html-paragraph">Create a file called index.jsx and copy this into it: </div><div class="qm-html-paragraph"><div class="quantum-code-highlight-codeblock language-jsx"><pre><span class="hljs-keyword">import</span> { TitleBar } <span class="hljs-keyword">from</span> <span class="hljs-string">'hexagon-react'</span>
+</style></head><body class=" qm-docs-sidebar-page"><div class="qm-docs-header"><div class="qm-docs-centered"><div class="qm-docs-header-wrapper"><div class="qm-docs-header-title">Hexagon React</div></div></div></div><div class="qm-docs-top-section"><div class="qm-docs-top-section-centered qm-docs-top-section-banner"><div class="qm-docs-top-section-title">Introduction</div><div class="qm-docs-top-section-description"><div class="qm-html-paragraph">What hexagon-react is, how to install it, and how to set it up. </div></div></div></div><div class="qm-docs-content-section-container"><div class="qm-docs-sidebar qm-docs-sidebar-left"><div class="qm-docs-navication-menu"><div class="qm-docs-navication-menu-section"><div class="qm-docs-navication-menu-section-title"></div><div class="qm-docs-navication-menu-section-body"><a class="qm-docs-navication-menu-page" href="/hexagon-react/">Introduction</a><a class="qm-docs-navication-menu-page" href="/hexagon-react/components/">Components</a></div></div></div></div><div class="qm-docs-content-section"><div class="qm-docs-centered"><div class="qm-docs-notice "><div class="qm-docs-notice-header">Under construction</div><div class="qm-docs-notice-body"><div class="qm-html-paragraph">This documentation is under construction </div></div></div><div class="qm-docs-topic"><div class="qm-docs-anchor" id="about"><div class="qm-docs-topic-header">About<a class="qm-docs-anchor-icon" href="#about"></a></div></div><div class="qm-docs-topic-body"><div class="qm-html-paragraph">This is the documentation for  <b>hexagon-react</b> , a wrapper library for <a href="https://www.hexagonjs.io">HexagonJS</a>  which exposes most of the components as  <b>React components</b> . </div><div class="qm-html-paragraph">The library is only available an  <b>es6 module</b> . This means that you will have to use something like webpack to bundle it into your application. </div></div></div><div class="qm-docs-topic"><div class="qm-docs-anchor" id="installation"><div class="qm-docs-topic-header">Installation<a class="qm-docs-anchor-icon" href="#installation"></a></div></div><div class="qm-docs-topic-body"><div class="qm-html-paragraph"><div class="qm-docs-section"><div class="qm-docs-anchor" id="install-with-bower"><div class="qm-docs-section-header">Install with bower<a class="qm-docs-anchor-icon" href="#install-with-bower"></a></div></div><div class="qm-docs-section-body"><div class="qm-html-paragraph"><div class="quantum-code-highlight-codeblock language-bash"><pre>bower install --save hexagon-react</pre></div> </div></div></div> </div><div class="qm-html-paragraph"><div class="qm-docs-section"><div class="qm-docs-anchor" id="install-with-npm"><div class="qm-docs-section-header">Install with npm<a class="qm-docs-anchor-icon" href="#install-with-npm"></a></div></div><div class="qm-docs-section-body"><div class="qm-html-paragraph"><div class="quantum-code-highlight-codeblock language-bash"><pre>npm install --save hexagon-react</pre></div> </div></div></div> </div></div></div><div class="qm-docs-topic"><div class="qm-docs-anchor" id="quick-start"><div class="qm-docs-topic-header">Quick Start<a class="qm-docs-anchor-icon" href="#quick-start"></a></div></div><div class="qm-docs-topic-body"><div class="qm-html-paragraph">This section will go through installing all the dependencies, setting up webpack to  <b>transpile</b>  jsx+es6 to es5, and creating an example page using some of the components. </div><div class="qm-html-paragraph"><div class="qm-docs-section"><div class="qm-docs-anchor" id="create-a-project-directory"><div class="qm-docs-section-header">Create a project directory<a class="qm-docs-anchor-icon" href="#create-a-project-directory"></a></div></div><div class="qm-docs-section-body"><div class="qm-html-paragraph">To start, create a new folder for the project code to live in. For this quick start guide, we are going to create one called  <code class="quantum-code-highlight-code language-">hexagon-react-<span class="hljs-built_in">demo</span></code> : </div><div class="qm-html-paragraph"><div class="quantum-code-highlight-codeblock language-bash"><pre>mkdir hexagon-react-demo
+<span class="hljs-built_in">cd</span> hexagon-react-demo</pre></div> </div></div></div> </div><div class="qm-html-paragraph"><div class="qm-docs-section"><div class="qm-docs-anchor" id="initialise-a-new-npm-project-and-install-dependencies"><div class="qm-docs-section-header">Initialise a new npm project and install dependencies<a class="qm-docs-anchor-icon" href="#initialise-a-new-npm-project-and-install-dependencies"></a></div></div><div class="qm-docs-section-body"><div class="qm-html-paragraph">Initialise a new npm project with </div><div class="qm-html-paragraph"><div class="quantum-code-highlight-codeblock language-bash"><pre>npm init</pre></div> </div><div class="qm-html-paragraph">and answer all the quesions it asks - the defaults should be fine </div><div class="qm-html-paragraph"><div class="quantum-code-highlight-codeblock language-bash"><pre>npm install --save-dev webpack
+npm install --save-dev babel-core
+npm install --save-dev babel-loader
+npm install --save-dev babel-preset-es2015
+npm install --save-dev babel-preset-react
+
+npm install --save-dev react
+npm install --save-dev react-dom
+npm install --save-dev hexagon-js
+npm install --save-dev hexagon-react
+
+npm install --save-dev live-reload</pre></div> </div><div class="qm-html-paragraph"><div class="qm-docs-notice "><div class="qm-docs-notice-header">Note</div><div class="qm-docs-notice-body"><div class="qm-html-paragraph">hexagon-react requires the  <b>React</b>  and  <b>hx</b>  globals to be available. So we install them here ready to include on the page </div></div></div> </div></div></div> </div><div class="qm-html-paragraph"><div class="qm-docs-section"><div class="qm-docs-anchor" id="set-up-webpack-to-build-your-jsx"><div class="qm-docs-section-header">Set up webpack to build your jsx<a class="qm-docs-anchor-icon" href="#set-up-webpack-to-build-your-jsx"></a></div></div><div class="qm-docs-section-body"><div class="qm-html-paragraph">We have already installed all the dependencies we need, so all that is left now is to create the webpack config file. </div><div class="qm-html-paragraph">Create a file called  <b>webpack.config.js</b>  and paste the following config into it. This will set up webpack to transpile ES6 and jsx to ES5. </div><div class="qm-html-paragraph"><div class="quantum-code-highlight-codeblock language-js"><pre><span class="hljs-built_in">module</span>.exports = {
+  context: __dirname,
+  entry: <span class="hljs-string">'./index.jsx'</span>,
+  output: {
+    path: <span class="hljs-string">'target'</span>,
+    filename: <span class="hljs-string">'index.js'</span>
+  },
+  <span class="hljs-built_in">module</span>: {
+    loaders: [
+      {
+        loader: <span class="hljs-string">'babel-loader'</span>,
+        query: {
+          presets: [<span class="hljs-string">'es2015'</span>, <span class="hljs-string">'react'</span>]
+        }
+      }
+    ]
+  },
+}</pre></div> </div></div></div> </div><div class="qm-html-paragraph"><div class="qm-docs-section"><div class="qm-docs-anchor" id="create-a-page-using-react-components"><div class="qm-docs-section-header">Create a page using react components<a class="qm-docs-anchor-icon" href="#create-a-page-using-react-components"></a></div></div><div class="qm-docs-section-body"><div class="qm-html-paragraph">Create a file called index.jsx and copy this into it: </div><div class="qm-html-paragraph"><div class="quantum-code-highlight-codeblock language-jsx"><pre><span class="hljs-keyword">import</span> { TitleBar, Content, NumberPicker, DatePicker, TagInput, Slider } <span class="hljs-keyword">from</span> <span class="hljs-string">'hexagon-react'</span>
 
 <span class="hljs-keyword">const</span> page = <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">TitleBar</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"Hexagon React demo"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">TitleBar</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">Content</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Number Picker<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">NumberPicker</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">NumberPicker</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Date Picker<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">DatePicker</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">DatePicker</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Tag Input<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">TagInput</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">TagInput</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Slider<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">Slider</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Slider</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">Content</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">TitleBar</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"Hexagon React demo"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">TitleBar</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Content</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Number Picker<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">NumberPicker</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">NumberPicker</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Date Picker<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">DatePicker</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">DatePicker</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Tag Input<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">TagInput</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">TagInput</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Slider<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">Slider</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Slider</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Content</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 
-ReactDom.render(page, hx.select(<span class="hljs-string">'#mount'</span>).node())</pre></div> </div></div></div> </div><div class="qm-html-paragraph"><div class="qm-docs-section"><div class="qm-docs-anchor" id="create-an-example-page"><div class="qm-docs-section-header">Create an example page<a class="qm-docs-anchor-icon" href="#create-an-example-page"></a></div></div><div class="qm-docs-section-body"><div class="qm-html-paragraph">Create a file called index.html and copy the following into it.: </div><div class="qm-html-paragraph"><div class="quantum-code-highlight-codeblock language-html"><pre><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+ReactDOM.render(page, hx.select(<span class="hljs-string">'#mount'</span>).node())</pre></div> </div></div></div> </div><div class="qm-html-paragraph"><div class="qm-docs-section"><div class="qm-docs-anchor" id="create-an-example-page"><div class="qm-docs-section-header">Create an example page<a class="qm-docs-anchor-icon" href="#create-an-example-page"></a></div></div><div class="qm-docs-section-body"><div class="qm-html-paragraph">Create a file called index.html and copy the following into it: </div><div class="qm-html-paragraph"><div class="quantum-code-highlight-codeblock language-html"><pre><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/bower_components/hexagon-js/dist/hexagon-light/hexagon.css"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/node_modules/hexagon-js/dist/hexagon-light/hexagon.css"</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"mount"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/bower_components/react/dist/react.js"</span>/&gt;</span><span class="handlebars"><span class="xml">
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/bower_components/react-dom/dist/react-dom.js"</span>/&gt;</span><span class="handlebars"><span class="xml">
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/bower_components/hexagon-js/dist/hexagon-light/hexagon.js"</span>/&gt;</span><span class="handlebars"><span class="xml">
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/bower_components/hexagon-react/dist/hexagon-react.js"</span>/&gt;</span><span class="handlebars"><span class="xml">
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/index.js"</span>/&gt;</span><span class="handlebars"><span class="xml">
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/node_modules/react/dist/react.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/node_modules/react-dom/dist/react-dom.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/node_modules/hexagon-js/dist/hexagon-light/hexagon.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/target/index.js"</span>/&gt;</span><span class="handlebars"><span class="xml">
   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span></span></span></span></span></span></span></span></span></span></pre></div> </div></div></div> </div></div></div></div></div></div><script src="/hexagon-react/libs/hexagon-js/hexagon.js"></script><script src="/hexagon-react/libs/react/react.js"></script><script src="/hexagon-react/libs/react-dom/react-dom.js"></script><script>var topSection = hx.select('.qm-docs-top-section')
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span></span></pre></div> </div></div></div> </div><div class="qm-html-paragraph"><div class="qm-docs-section"><div class="qm-docs-anchor" id="build-the-site"><div class="qm-docs-section-header">Build the site<a class="qm-docs-anchor-icon" href="#build-the-site"></a></div></div><div class="qm-docs-section-body"><div class="qm-html-paragraph">Now we should have everything we need to build the site. We can add an entry into package.json for building the site: </div><div class="qm-html-paragraph"><div class="quantum-code-highlight-codeblock language-json"><pre><span class="hljs-string">"scripts"</span>: {
+  <span class="hljs-attr">"build"</span>: <span class="hljs-string">"webpack"</span>,
+  <span class="hljs-attr">"watch"</span>: <span class="hljs-string">"webpack -w"</span>,
+  <span class="hljs-attr">"server"</span>: <span class="hljs-string">"live-server"</span>
+}</pre></div> </div><div class="qm-html-paragraph">So you should end up with something like: </div><div class="qm-html-paragraph"><div class="quantum-code-highlight-codeblock language-json"><pre>{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"hexagon-react-demo"</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-string">"1.0.0"</span>,
+  <span class="hljs-attr">"description"</span>: <span class="hljs-string">""</span>,
+  <span class="hljs-attr">"main"</span>: <span class="hljs-string">"index.js"</span>,
+  <span class="hljs-attr">"scripts"</span>: {
+    <span class="hljs-attr">"test"</span>: <span class="hljs-string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>
+  },
+  <span class="hljs-attr">"author"</span>: <span class="hljs-string">""</span>,
+  <span class="hljs-attr">"license"</span>: <span class="hljs-string">"ISC"</span>,
+  <span class="hljs-attr">"devDependencies"</span>: {
+    <span class="hljs-attr">"babel-core"</span>: <span class="hljs-string">"^6.9.1"</span>,
+    <span class="hljs-attr">"babel-loader"</span>: <span class="hljs-string">"^6.2.4"</span>,
+    <span class="hljs-attr">"babel-preset-es2015"</span>: <span class="hljs-string">"^6.9.0"</span>,
+    <span class="hljs-attr">"babel-preset-react"</span>: <span class="hljs-string">"^6.5.0"</span>,
+    <span class="hljs-attr">"hexagon-js"</span>: <span class="hljs-string">"^1.3.2"</span>,
+    <span class="hljs-attr">"hexagon-react"</span>: <span class="hljs-string">"^0.1.1"</span>,
+    <span class="hljs-attr">"react"</span>: <span class="hljs-string">"^15.1.0"</span>,
+    <span class="hljs-attr">"react-dom"</span>: <span class="hljs-string">"^15.1.0"</span>,
+    <span class="hljs-attr">"webpack"</span>: <span class="hljs-string">"^1.13.1"</span>
+  },
+  <span class="hljs-attr">"scripts"</span>: {
+    <span class="hljs-attr">"build"</span>: <span class="hljs-string">"webpack"</span>,
+    <span class="hljs-attr">"watch"</span>: <span class="hljs-string">"webpack -w"</span>,
+    <span class="hljs-attr">"server"</span>: <span class="hljs-string">"live-server"</span>
+  }
+}</pre></div> </div><div class="qm-html-paragraph">Now open up two terminals. In one, run: </div><div class="qm-html-paragraph"><div class="quantum-code-highlight-codeblock language-bash"><pre>npm run watch</pre></div> </div><div class="qm-html-paragraph">And the other, run </div><div class="qm-html-paragraph"><div class="quantum-code-highlight-codeblock language-bash"><pre>npm run server</pre></div> </div></div></div> </div></div></div></div></div></div><script src="/hexagon-react/libs/hexagon-js/hexagon.js"></script><script src="/hexagon-react/libs/react/react.js"></script><script src="/hexagon-react/libs/react-dom/react-dom.js"></script><script>var topSection = hx.select('.qm-docs-top-section')
 var sidebarLeft = hx.select('.qm-docs-sidebar-left')
 var sidebarRight = hx.select('.qm-docs-sidebar-right')
 var bottomSection = hx.select('.qm-docs-bottom-section')
