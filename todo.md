@@ -131,7 +131,7 @@
 
 # Docs
 
-- [ ] Example setup with webpack
+- [x] Example setup with webpack
 
 ### Docs (api)
 - [ ] spinner
