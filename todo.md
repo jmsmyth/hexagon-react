@@ -29,9 +29,9 @@
  - [x] slider
  - [x] time-slider
  - [x] data-table
+ - [x] error-pages
  - [ ] card
  - [ ] crumbtrail
- - [ ] error-pages
  - [ ] inline-editable
  - [ ] inline-picker
  - [ ] meter
@@ -73,9 +73,9 @@
 - [x] slider
 - [x] time-slider
 - [x] data-table
+- [x] error-pages
 - [ ] card
 - [ ] crumbtrail
-- [ ] error-pages
 - [ ] inline-editable
 - [ ] inline-picker
 - [ ] meter
@@ -115,9 +115,9 @@
 - [x] slider
 - [x] time-slider
 - [x] data-table
+- [x] error-pages
 - [ ] card
 - [ ] crumbtrail
-- [ ] error-pages
 - [ ] inline-editable
 - [ ] inline-picker
 - [ ] meter

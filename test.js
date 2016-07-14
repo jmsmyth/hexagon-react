@@ -8,7 +8,7 @@ import { ProgressBar, Collapsible, NumberPicker } from './hexagon-react'
 import { ButtonGroup, DatePicker, TimePicker } from './hexagon-react'
 import { DateTimePicker, ColorPicker, Toggle } from './hexagon-react'
 import { PivotTable, TagInput, AutoComplete, Slider } from './hexagon-react'
-import { TimeSlider, DataTable } from './hexagon-react'
+import { TimeSlider, DataTable, ErrorMessage } from './hexagon-react'
 
 function createComponent (component) {
   const selection = hx.detached('div')
@@ -1508,6 +1508,36 @@ describe('hexagon-react', function () {
       })
     })
 
+  })
+
+  describe('<ErrorMessage/>', () => {
+    it('should be a div with the hx-error-message class', () => {
+      return createComponent(React.createElement(ErrorMessage)).then((selection) => {
+        selection.select('.hx-error-message').size().should.equal(1)
+      })
+    })
+
+    it('should use the title prop', () => {
+      return testProp({
+        component: ErrorMessage,
+        initialProps: {title: 'Title 1'},
+        props: {title: 'Title 2'},
+        test: (selection, props) => {
+          selection.select('.hx-error-message').select('.hx-error-message-heading').text().should.eql(props.title)
+        }
+      })
+    })
+
+    it('should use the message prop', () => {
+      return testProp({
+        component: ErrorMessage,
+        initialProps: {message: 'Message 1'},
+        props: {message: 'Message 2'},
+        test: (selection, props) => {
+          selection.select('.hx-error-message').select('p').text().should.eql(props.message)
+        }
+      })
+    })
   })
 
 })

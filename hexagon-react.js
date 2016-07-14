@@ -462,3 +462,14 @@ export class DataTable extends React.Component {
     return React.createElement('div', {className: 'hx-data-table', ref: (d) => this.div = d})
   }
 }
+
+/* ErrorMessage */
+
+export function ErrorMessage (props) {
+  return React.createElement('div', {className: 'hx-error-message'},
+    React.createElement('div', {className: 'hx-error-message-heading'}, props.title || '404'),
+    React.createElement('div', undefined, React.createElement('p', undefined, props.message || 'The content you requested was not found')),
+    React.createElement('div', undefined,
+      React.createElement('button', {onClick: window.history.back, className: 'hx-btn hx-positive'}, props.backText || 'Go Back'),
+      React.createElement('a', {className: 'hx-btn hx-positive', href: '/'}, props.homePageText || 'Go to Home Page')))
+}
