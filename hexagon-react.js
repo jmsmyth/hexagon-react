@@ -10,22 +10,22 @@ function contextClass (context) {
 
 /* Layout */
 
-export function Content (props) {
+function Content (props) {
   return React.createElement('div', {className: 'hx-content'}, props.children)
 }
 
-export function Group (props) {
+function Group (props) {
   const direction = props.direction === 'vertical' ? 'hx-vertical' : 'hx-horizontal'
   return React.createElement('div', {className: classes('hx-group', direction)}, props.children)
 }
 
-export function Section (props) {
+function Section (props) {
   return React.createElement('div', {className: 'hx-section'}, props.children)
 }
 
 /* Titlebar */
 
-export class TitleBar extends React.Component {
+class TitleBar extends React.Component {
   componentDidMount() {
     this.component = new hx.TitleBar(this.div)
   }
@@ -50,11 +50,11 @@ export class TitleBar extends React.Component {
   }
 }
 
-export function TitleBarLink (props) {
+function TitleBarLink (props) {
   return React.createElement('a', {href: props.href, className: 'hx-titlebar-link'}, props.children)
 }
 
-export function TitleBarIcon (props) {
+function TitleBarIcon (props) {
   return React.createElement('a', {className: 'hx-titlebar-menu-icon'},
     React.createElement('i', {className: props.iconClass}),
     React.createElement('span', {className: 'hx-titlebar-menu-text'}, props.children))
@@ -62,23 +62,23 @@ export function TitleBarIcon (props) {
 
 /* Buttons */
 
-export function Button (props) {
+function Button (props) {
   return React.createElement('button', hx.merge({className: classes('hx-btn', contextClass(props.context))}, props), props.children)
 }
 
 /* Loading spinners */
 
-export function Spinner (props) {
+function Spinner (props) {
   return React.createElement('span', {className: 'hx-spinner'})
 }
 
-export function SpinnerWide (props) {
+function SpinnerWide (props) {
   return React.createElement('div', {className: 'hx-spinner-wide'})
 }
 
 /* Labels */
 
-export function Label (props) {
+function Label (props) {
   return React.createElement('span',
     {className: classes('hx-label', contextClass(props.context))},
     props.children)
@@ -86,7 +86,7 @@ export function Label (props) {
 
 /* Notices */
 
-export function Notice (props) {
+function Notice (props) {
   return React.createElement('div',
     {className: classes('hx-notice', contextClass(props.context))},
     React.createElement('div', {className: 'hx-notice-header'}, props.title),
@@ -95,7 +95,7 @@ export function Notice (props) {
 
 /* Tree */
 
-export class Tree extends React.Component {
+class Tree extends React.Component {
   componentDidMount() {
     this.component = new hx.Tree(this.div, this.props)
   }
@@ -112,7 +112,7 @@ export class Tree extends React.Component {
 
 /* Picker */
 
-export class Picker extends React.Component {
+class Picker extends React.Component {
   componentDidMount() {
     this.component = new hx.Picker(this.div, this.props)
     if (this.props.onEvent) this.component.on(undefined, this.props.onEvent)
@@ -132,13 +132,13 @@ export class Picker extends React.Component {
 
 /* Input Groups */
 
-export function InputGroup (props) {
+function InputGroup (props) {
   return React.createElement('span', {className: 'hx-input-group'}, props.children)
 }
 
 /* Progress Bars */
 
-export class ProgressBar extends React.Component {
+class ProgressBar extends React.Component {
   componentDidMount() {
     this.component = new hx.ProgressBar(this.div, this.props)
   }
@@ -154,7 +154,7 @@ export class ProgressBar extends React.Component {
 
 /* Collapsibles */
 
-export class Collapsible extends React.Component {
+class Collapsible extends React.Component {
   componentDidMount() {
     this.component = new hx.Collapsible(this.div, this.props)
     if (this.props.onEvent) this.component.on(undefined, this.props.onEvent)
@@ -169,7 +169,7 @@ export class Collapsible extends React.Component {
 
 /* Number Picker */
 
-export class NumberPicker extends React.Component {
+class NumberPicker extends React.Component {
   componentDidMount() {
     this.component = new hx.NumberPicker(this.div, hx.merge(this.props, {buttonClass: contextClass(this.props.context)}))
     if (this.props.onEvent) this.component.on(undefined, this.props.onEvent)
@@ -189,7 +189,7 @@ export class NumberPicker extends React.Component {
 
 /* Button Group */
 
-export class ButtonGroup extends React.Component {
+class ButtonGroup extends React.Component {
   componentDidMount() {
     this.component = new hx.ButtonGroup(this.div, this.props)
     // XXX: Needs fixing in hexagon-js, so that can be passed in as an initial value
@@ -212,7 +212,7 @@ export class ButtonGroup extends React.Component {
 
 /* Date Picker */
 
-export class DatePicker extends React.Component {
+class DatePicker extends React.Component {
   componentDidMount() {
     this.component = new hx.DatePicker(this.div, this.props)
     if (this.props.onEvent) this.component.on(undefined, this.props.onEvent)
@@ -235,7 +235,7 @@ export class DatePicker extends React.Component {
 
 /* Date Picker */
 
-export class TimePicker extends React.Component {
+class TimePicker extends React.Component {
   componentDidMount() {
     this.component = new hx.TimePicker(this.div, hx.merge(this.props, {buttonClass: contextClass(this.props.context)}))
     if (this.props.onEvent) this.component.on(undefined, this.props.onEvent)
@@ -255,7 +255,7 @@ export class TimePicker extends React.Component {
 
 /* Date Time Picker */
 
-export class DateTimePicker extends React.Component {
+class DateTimePicker extends React.Component {
   componentDidMount() {
     this.component = new hx.DateTimePicker(this.div, this.props)
     if (this.props.onEvent) this.component.on(undefined, this.props.onEvent)
@@ -275,7 +275,7 @@ export class DateTimePicker extends React.Component {
 
 /* Color Picker */
 
-export class ColorPicker extends React.Component {
+class ColorPicker extends React.Component {
   componentDidMount() {
     // XXX: startColor should be renamed to value in hexagon
     this.component = new hx.ColorPicker(this.div, hx.merge(this.props, {startColor: this.props.value}))
@@ -294,7 +294,7 @@ export class ColorPicker extends React.Component {
 
 /* Toggle */
 
-export class Toggle extends React.Component {
+class Toggle extends React.Component {
   componentDidMount() {
     this.component = new hx.Toggle(this.div, this.props)
     if (this.props.onEvent) this.component.on(undefined, this.props.onEvent)
@@ -313,7 +313,7 @@ export class Toggle extends React.Component {
 
 /* PivotTable */
 
-export class PivotTable extends React.Component {
+class PivotTable extends React.Component {
   componentDidMount() {
     this.component = new hx.PivotTable(this.div, this.props)
     // XXX: this should be an option in hexagon
@@ -331,7 +331,7 @@ export class PivotTable extends React.Component {
 
 /* TagInput */
 
-export class TagInput extends React.Component {
+class TagInput extends React.Component {
   componentDidMount() {
     this.component = new hx.TagInput(this.div, this.props)
     if (this.props.onEvent) this.component.on(undefined, this.props.onEvent)
@@ -349,7 +349,7 @@ export class TagInput extends React.Component {
 
 /* Autocomplete */
 
-export class AutoComplete extends React.Component {
+class AutoComplete extends React.Component {
   componentDidMount() {
     this.component = new hx.AutoComplete(this.div, this.props.data, this.props)
     if (this.props.onEvent) this.component.on(undefined, this.props.onEvent)
@@ -362,7 +362,7 @@ export class AutoComplete extends React.Component {
 
 /* Slider */
 
-export class Slider extends React.Component {
+class Slider extends React.Component {
   componentDidMount() {
     this.component = new hx.Slider(this.div, this.props)
     if (this.props.onEvent) this.component.on(undefined, this.props.onEvent)
@@ -385,7 +385,7 @@ export class Slider extends React.Component {
 
 /* TimeSlider */
 
-export class TimeSlider extends React.Component {
+class TimeSlider extends React.Component {
   componentDidMount() {
     this.component = new hx.TimeSlider(this.div, this.props)
     if (this.props.onEvent) this.component.on(undefined, this.props.onEvent)
@@ -408,7 +408,7 @@ export class TimeSlider extends React.Component {
 
 /* DataTable */
 
-export class DataTable extends React.Component {
+class DataTable extends React.Component {
   componentDidMount() {
     this.component = new hx.DataTable(this.div, this.props)
     if (this.props.onEvent) this.component.on(undefined, this.props.onEvent)
@@ -465,11 +465,44 @@ export class DataTable extends React.Component {
 
 /* ErrorMessage */
 
-export function ErrorMessage (props) {
+function ErrorMessage (props) {
   return React.createElement('div', {className: 'hx-error-message'},
     React.createElement('div', {className: 'hx-error-message-heading'}, props.title || '404'),
     React.createElement('div', undefined, React.createElement('p', undefined, props.message || 'The content you requested was not found')),
     React.createElement('div', undefined,
       React.createElement('button', {onClick: window.history.back, className: 'hx-btn hx-positive'}, props.backText || 'Go Back'),
       React.createElement('a', {className: 'hx-btn hx-positive', href: '/'}, props.homePageText || 'Go to Home Page')))
+}
+
+module.exports = {
+  Content: Content,
+  Group: Group,
+  Section: Section,
+  TitleBar: TitleBar,
+  TitleBarLink: TitleBarLink,
+  TitleBarIcon: TitleBarIcon,
+  Button: Button,
+  Spinner: Spinner,
+  SpinnerWide: SpinnerWide,
+  Label: Label,
+  Notice: Notice,
+  Tree: Tree,
+  Picker: Picker,
+  InputGroup: InputGroup,
+  ProgressBar: ProgressBar,
+  Collapsible: Collapsible,
+  NumberPicker: NumberPicker,
+  ButtonGroup: ButtonGroup,
+  DatePicker: DatePicker,
+  TimePicker: TimePicker,
+  DateTimePicker: DateTimePicker,
+  ColorPicker: ColorPicker,
+  Toggle: Toggle,
+  PivotTable: PivotTable,
+  TagInput: TagInput,
+  AutoComplete: AutoComplete,
+  Slider: Slider,
+  TimeSlider: TimeSlider,
+  DataTable: DataTable,
+  ErrorMessage: ErrorMessage
 }
